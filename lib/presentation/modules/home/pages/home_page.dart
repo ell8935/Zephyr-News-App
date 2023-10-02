@@ -16,21 +16,6 @@ class _HomePageState extends State<HomePage> {
   late List<Articles> articleList = [];
 
   @override
-  void initState() {
-    super.initState();
-    fetchArticles();
-  }
-
-  Future<void> fetchArticles() async {
-    final articles = await getArticles();
-    setState(() {
-      // Convert List<dynamic> to List<Articles>
-      articleList =
-          articles.map((article) => Articles.fromJson(article)).toList();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<ArticlesBloc, ArticlesState>(
       builder: (context, state) {
@@ -38,7 +23,10 @@ class _HomePageState extends State<HomePage> {
           return const CircularProgressIndicator();
         }
         if (state is ArticlesLoaded) {
-          return const ArticleFeed(); // Assuming ArticleFeed takes articleList as an argument
+          return Container(
+            child: Text(state.articles[2].author),
+          );
+          // const ArticleFeed(); // Assuming ArticleFeed takes articleList as an argument
         } else {
           return Container();
         }
