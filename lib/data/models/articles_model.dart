@@ -18,6 +18,7 @@ class Articles extends Equatable {
     required this.publishedAt,
     required this.description,
   });
+
   Articles copyWith({
     String? url,
     String? title,
@@ -35,6 +36,18 @@ class Articles extends Equatable {
       urlToImage: urlToImage ?? this.urlToImage,
       publishedAt: publishedAt ?? this.publishedAt,
       description: description ?? this.description,
+    );
+  }
+
+  factory Articles.fromJson(Map<String, dynamic> json) {
+    return Articles(
+      url: json['url'] ?? "",
+      title: json['title'] ?? "",
+      author: json['author'] ?? "",
+      content: json['content'] ?? "",
+      urlToImage: json['urlToImage'] ?? "",
+      publishedAt: json['publishedAt'] ?? "",
+      description: json['description'] ?? "",
     );
   }
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/presentation/modules/shared/api/get_news.dart';
-import 'package:move_home_assignment/presentation/modules/shared/widgets/custom_search_bar.dart';
-import 'package:move_home_assignment/presentation/modules/shared/widgets/range_date_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
+import 'package:move_home_assignment/data/models/articles_model.dart';
+import 'package:move_home_assignment/presentation/modules/home/widgets/article_feed.dart';
+import 'package:move_home_assignment/presentation/modules/shared/api/get_articles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,31 +13,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late List<Articles> articleList = [];
+
   @override
   void initState() {
     super.initState();
-    getNews();
+    fetchArticles();
+  }
+
+  Future<void> fetchArticles() async {
+    final articles = await getArticles();
+    setState(() {
+      // Convert List<dynamic> to List<Articles>
+      articleList =
+          articles.map((article) => Articles.fromJson(article)).toList();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Column(
-        children: [
-          Center(
-            child: SingleChildScrollView(
-              // Wrap with SingleChildScrollView
-              child: Column(
-                children: [
-                  // Add other content above the SearchBar if needed
-                  CustomSearchBar(),
-                  // Add other content below the SearchBar if needed
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+    return BlocBuilder<ArticlesBloc, ArticlesState>(
+      builder: (context, state) {
+        if (state is ArticlesLoading) {
+          return const CircularProgressIndicator();
+        }
+        if (state is ArticlesLoaded) {
+          return const ArticleFeed(); // Assuming ArticleFeed takes articleList as an argument
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }
