@@ -28,8 +28,7 @@ class _FilterBarState extends State<FilterBar> {
       builder: (context, state) {
         if (state is FilteredSearchLoaded) {
           // Extract the selected filters from the state
-          final selectedFilters = state.filters.keywords;
-          // return const Text('asd');
+          final selectedFilters = state.filters;
           return Column(
             children: [
               const RangeDatePicker(),

@@ -30,7 +30,7 @@ class CustomSearchBar extends StatelessWidget {
             ),
             onChanged: (query) {
               BlocProvider.of<FilteredSearchBloc>(context).add(
-                LoadFilteredSearchQuery(searchQuery: query),
+                LoadFilteredSearchKeywords(keywords: query),
               );
             },
           ),

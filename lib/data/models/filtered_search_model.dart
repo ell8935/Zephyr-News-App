@@ -2,45 +2,41 @@ import 'package:equatable/equatable.dart';
 
 class FilteredSearchEntity extends Equatable {
   final String keywords;
-  // final String sortBy;
-  // final String to;
-  // final String from;
+  final String from;
+  final String to;
+  final String sortBy;
 
   const FilteredSearchEntity({
     required this.keywords,
-    // required this.sortBy,
-    // required this.to,
-    // required this.from,
+    required this.from,
+    required this.to,
+    required this.sortBy,
   });
 
+  // Add a copyWith method to create a new instance with updated values
   FilteredSearchEntity copyWith({
     String? keywords,
-    // String? sortBy,
-    // String? to,
-    // String? from,
+    String? from,
+    String? to,
+    String? sortBy,
   }) {
     return FilteredSearchEntity(
       keywords: keywords ?? this.keywords,
-      // sortBy: sortBy ?? this.sortBy,
-      // to: to ?? this.to,
-      // from: from ?? this.from,
+      from: from ?? this.from,
+      to: to ?? this.to,
+      sortBy: sortBy ?? this.sortBy,
     );
   }
 
   factory FilteredSearchEntity.fromJson(Map<String, dynamic> json) {
     return FilteredSearchEntity(
       keywords: json['keywords'] ?? "",
-      // sortBy: json['sortBy'] ?? "",
-      // to: json['to'] ?? "",
-      // from: json['from'] ?? "",
+      sortBy: json['sortBy'] ?? "",
+      to: json['to'] ?? "",
+      from: json['from'] ?? "",
     );
   }
 
   @override
-  List<Object?> get props => [
-        keywords,
-        // sortBy,
-        // to,
-        // from,
-      ];
+  List<Object?> get props => [keywords, sortBy, to, from];
 }

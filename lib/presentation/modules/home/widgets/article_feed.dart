@@ -21,7 +21,6 @@ class ArticleFeed extends StatelessWidget {
               itemCount: state.articles.length,
               itemBuilder: (BuildContext context, int index) {
                 final article = state.articles[index];
-                print(article.content);
 
                 return ArticleCard(
                   title: article.title,

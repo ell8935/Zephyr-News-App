@@ -19,7 +19,8 @@ class LoadArticles extends ArticlesEvent {
 }
 
 class LoadArticlesWithFilters extends ArticlesEvent {
-  final String filters; // Update to accept a list of strings (keywords)
+  final FilteredSearchEntity
+      filters; // Update to accept a list of strings (keywords)
 
   const LoadArticlesWithFilters({
     required this.filters,

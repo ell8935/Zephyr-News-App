@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:move_home_assignment/business_logic/bloc/filtered_search/filtered_search_bloc.dart';
 
 class RangeDatePicker extends StatefulWidget {
   const RangeDatePicker({Key? key}) : super(key: key);
@@ -15,7 +18,8 @@ class _RangeDatePickerState extends State<RangeDatePicker> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("${selectedDates.duration.inDays}"),
+        Text(DateFormat('yyyy-MM-dd').format(selectedDates.start)),
+        Text(DateFormat('yyyy-MM-dd').format(selectedDates.end)),
         ElevatedButton(
           onPressed: () async {
             final DateTimeRange? dateTimeRange = await showDateRangePicker(
@@ -23,12 +27,14 @@ class _RangeDatePickerState extends State<RangeDatePicker> {
                 firstDate: DateTime(2000),
                 lastDate: DateTime(3000));
             if (dateTimeRange != null) {
-              setState(() {
-                selectedDates = dateTimeRange;
-              });
+              BlocProvider.of<FilteredSearchBloc>(context)
+                  .add(LoadFilteredSearchDateRange(
+                from: DateFormat('yyyy-MM-dd').format(selectedDates.start),
+                to: DateFormat('yyyy-MM-dd').format(selectedDates.end),
+              ));
             }
           },
-          child: const Text('asdasd'),
+          child: const Text('Date'),
         )
       ]),
     );
