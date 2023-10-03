@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 final dio = Dio();
 
 Future<List<dynamic>> getArticles(
-    {String keywords = 'israel',
+    {String keywords = 'asd',
     String from = '0',
     String to = '0',
     String sortBy = 'relevancy'}) async {
@@ -17,7 +17,6 @@ Future<List<dynamic>> getArticles(
     if (jsonResponse.containsKey("articles")) {
       // Check if "articles" key exists in the response
       List<dynamic> articles = jsonResponse["articles"];
-      print('THIS IS IN THE API CALL ${articles[0]}');
       return articles;
     } else {
       // "articles" key not found in the response

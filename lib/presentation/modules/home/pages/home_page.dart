@@ -34,20 +34,15 @@ class _HomePageState extends State<HomePage> {
         children: [
           CustomSearchBar(onSearchPressed: handleSearch), // Pass the callback
 
-          BlocConsumer<ArticlesBloc, ArticlesState>(
-            listener: (context, state) {
-              if (state is ArticlesError) {
-                print(Error());
-              }
-            },
+          BlocBuilder<ArticlesBloc, ArticlesState>(
             builder: (context, state) {
               if (state is ArticlesLoading) {
                 return const CircularProgressIndicator();
               } else if (state is ArticlesLoaded) {
-                print('THIS IS IN THE BlocBuilder ${state.articles[0]}');
-
                 return Expanded(
                   child: ListView.builder(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     itemCount: state.articles.length,
                     itemBuilder: (BuildContext context, int index) {
                       final article = state.articles[index];

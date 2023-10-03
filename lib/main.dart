@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/filtered_search/filtered_search_bloc.dart';
 import 'package:move_home_assignment/presentation/modules/home/pages/home_page.dart';
 import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
 
@@ -18,8 +19,13 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
 
-    return BlocProvider(
-      create: (context) => ArticlesBloc()..add(const LoadArticles()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ArticlesBloc()..add(const LoadArticles()),
+        ),
+        BlocProvider(create: (context) => FilteredSearchBloc())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

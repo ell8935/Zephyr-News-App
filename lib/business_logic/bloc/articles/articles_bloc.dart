@@ -21,11 +21,8 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
       }).toList();
 
       emit(ArticlesLoaded(articles: articlesList));
-      print('THIS IS IN THE BLOC  ${articlesList[0].title}');
-
       print('ArticlesLoaded emitted');
     } catch (e) {
-      print(e);
       emit(const ArticlesError(errorMessage: 'Failed to load articles'));
     }
   }
