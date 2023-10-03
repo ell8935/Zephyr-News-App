@@ -1,8 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:move_home_assignment/data/models/articles_model.dart';
-import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 import 'package:move_home_assignment/presentation/modules/shared/api/get_articles.dart';
 
 part 'articles_event.dart';
@@ -23,7 +21,6 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
       }).toList();
 
       emit(ArticlesLoaded(articles: articlesList));
-      print('ArticlesLoaded emitted');
     } catch (e) {
       emit(const ArticlesError(errorMessage: 'Failed to load articles'));
     }
@@ -41,7 +38,6 @@ _onLoadArticlesWithFilters(
     }).toList();
 
     emit(ArticlesLoaded(articles: articlesList));
-    print('ArticlesLoaded emitted with filters');
   } catch (e) {
     emit(const ArticlesError(errorMessage: 'Failed to load articles'));
   }

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 
 part 'filtered_search_event.dart';
@@ -22,7 +22,6 @@ class FilteredSearchBloc
 
       // For now, let's simulate a delay and return a placeholder result
       await Future.delayed(const Duration(seconds: 1));
-      print(event.searchQuery);
       emit(
         FilteredSearchLoaded(
           filters: FilteredSearchEntity(keywords: event.searchQuery),

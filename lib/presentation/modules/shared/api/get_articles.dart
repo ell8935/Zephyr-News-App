@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 
 final dio = Dio();
 
