@@ -10,21 +10,9 @@ part 'filtered_search_state.dart';
 class FilteredSearchBloc
     extends Bloc<FilteredSearchEvent, FilteredSearchState> {
   FilteredSearchBloc() : super(FilteredSearchInitial()) {
-    // on<LoadFilteredSearchParam>(_onLoadFilteredSearchParam);
+    on<LoadFilteredSearchQuery>(_onLoadFilteredSearchQuery);
   }
 
-  // _onLoadFilteredSearchParam(LoadFilteredSearchParam event, Emitter<FilteredSearchState> emit) async {
-  //   try {
-  //     final searchParams = await getArticles();
-
-  //     final List<FilteredSearchEntity> articlesList = articles.map((articleData) {
-  //       return FilteredSearchEntity.fromJson(articleData);
-  //     }).toList();
-
-  //     emit(FilteredSearchLoaded(articles: articlesList));
-  //     print('ArticlesLoaded emitted');
-  //   } catch (e) {
-  //     emit(const FilteredSearchError(errorMessage: 'Failed to load articles'));
-  //   }
-  // }
+  _onLoadFilteredSearchQuery(
+      LoadFilteredSearchQuery event, Emitter<FilteredSearchState> emit) async {}
 }

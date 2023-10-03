@@ -7,13 +7,13 @@ sealed class FilteredSearchEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadFilteredSearchParam extends FilteredSearchEvent {
-  final List<FilteredSearchEntity> filteredSearch;
+class LoadFilteredSearchQuery extends FilteredSearchEvent {
+  final String searchQuery;
 
-  const LoadFilteredSearchParam({
-    this.filteredSearch = const <FilteredSearchEntity>[],
+  const LoadFilteredSearchQuery({
+    required this.searchQuery,
   });
 
   @override
-  List<Object> get props => [filteredSearch];
+  List<Object> get props => [searchQuery];
 }

@@ -9,13 +9,13 @@ sealed class FilteredSearchState extends Equatable {
 
 final class FilteredSearchInitial extends FilteredSearchState {}
 
-final class FilteredSearchLoaded extends FilteredSearchState {
-  final List<FilteredSearchEntity> articles;
+class FilteredSearchLoaded extends FilteredSearchState {
+  final FilteredSearchEntity searchResults; // Renamed to searchResults
 
-  const FilteredSearchLoaded({this.articles = const <FilteredSearchEntity>[]});
+  const FilteredSearchLoaded({required this.searchResults});
 
   @override
-  List<Object> get props => [articles];
+  List<Object> get props => [searchResults];
 }
 
 class FilteredSearchError extends FilteredSearchState {

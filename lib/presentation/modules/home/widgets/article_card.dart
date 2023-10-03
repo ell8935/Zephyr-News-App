@@ -27,9 +27,13 @@ class ArticleCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Image.network(
-                urlToImage,
-                fit: BoxFit.contain,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width,
+                child: Image.network(
+                  urlToImage,
+                  fit: BoxFit.cover,
+                ),
               ),
               Text(
                 title,
@@ -37,6 +41,24 @@ class ArticleCard extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Wrap(
+                children: [
+                  const Text(
+                    'by',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    ' $author',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10,
