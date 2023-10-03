@@ -10,7 +10,9 @@ sealed class ArticlesEvent extends Equatable {
 class LoadArticles extends ArticlesEvent {
   final List<Articles> article;
 
-  const LoadArticles({this.article = const <Articles>[]});
+  const LoadArticles({
+    this.article = const <Articles>[],
+  });
 
   @override
   List<Object> get props => [article];

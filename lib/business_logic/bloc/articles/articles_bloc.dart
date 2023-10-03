@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:move_home_assignment/data/models/articles_model.dart';
 import 'package:move_home_assignment/presentation/modules/shared/api/get_articles.dart';
@@ -9,31 +10,23 @@ part 'articles_state.dart';
 class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   ArticlesBloc() : super(ArticlesLoading()) {
     on<LoadArticles>(_onLoadArticles);
-    on<AddArticles>(_onAddArticles);
-    on<DeleteArticles>(_onDeleteArticles);
-    on<UpdateArticles>(_onUpdateArticles);
   }
 
   void _onLoadArticles(LoadArticles event, Emitter<ArticlesState> emit) async {
     try {
       final articles = await getArticles();
 
-      // Convert the list of dynamic objects to a list of Articles
       final List<Articles> articlesList = articles.map((articleData) {
-        return Articles.fromJson(
-            articleData); // Assuming you have a fromJson method in your Articles class
+        return Articles.fromJson(articleData);
       }).toList();
 
       emit(ArticlesLoaded(articles: articlesList));
+      print('THIS IS IN THE BLOC  ${articlesList[0].title}');
+
+      print('ArticlesLoaded emitted');
     } catch (e) {
       print(e);
-      // Handle errors, for example, emit an error state
+      emit(const ArticlesError(errorMessage: 'Failed to load articles'));
     }
   }
-
-  void _onAddArticles(AddArticles event, Emitter<ArticlesState> emit) {}
-
-  void _onDeleteArticles(DeleteArticles event, Emitter<ArticlesState> emit) {}
-
-  void _onUpdateArticles(UpdateArticles event, Emitter<ArticlesState> emit) {}
 }

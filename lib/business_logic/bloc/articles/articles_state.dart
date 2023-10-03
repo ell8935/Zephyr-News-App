@@ -14,3 +14,12 @@ final class ArticlesLoaded extends ArticlesState {
 
   const ArticlesLoaded({this.articles = const <Articles>[]});
 }
+
+class ArticlesError extends ArticlesState {
+  final String errorMessage;
+
+  const ArticlesError({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}
