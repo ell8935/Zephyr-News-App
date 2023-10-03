@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:move_home_assignment/data/models/articles_model.dart';
+import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 import 'package:move_home_assignment/presentation/modules/shared/api/get_articles.dart';
 
 part 'articles_event.dart';
@@ -14,7 +15,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
 
   _onLoadArticles(LoadArticles event, Emitter<ArticlesState> emit) async {
     try {
-      final articles = await getArticles();
+      final articles = await getArticles(filters: const FilteredSearchEntity());
 
       final List<Articles> articlesList = articles.map((articleData) {
         return Articles.fromJson(articleData);

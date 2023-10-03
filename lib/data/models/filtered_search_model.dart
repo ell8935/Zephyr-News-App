@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class FilteredSearchEntity extends Equatable {
-  final String keywords;
-  final String from;
-  final String to;
-  final String sortBy;
+  final String? keywords;
+  final String? from;
+  final String? to;
+  final String? sortBy;
 
   const FilteredSearchEntity({
-    required this.keywords,
-    required this.from,
-    required this.to,
-    required this.sortBy,
+    this.keywords,
+    this.from,
+    this.to,
+    this.sortBy,
   });
 
   // Add a copyWith method to create a new instance with updated values

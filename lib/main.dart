@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => FilteredSearchBloc()
-              ..add(const LoadFilteredSearchQuery(searchQuery: 'elon')))
+              ..add(const LoadFilteredSearchKeywords(keywords: 'elon')))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
