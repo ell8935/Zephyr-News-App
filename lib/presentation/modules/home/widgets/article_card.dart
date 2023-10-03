@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:move_home_assignment/presentation/modules/details/pages/details_page.dart';
 
 class ArticleCard extends StatelessWidget {
   final String title;
   final String author;
   final String urlToImage;
   final String description;
+  final String content;
+  final String url;
 
   const ArticleCard({
     super.key,
@@ -12,7 +15,25 @@ class ArticleCard extends StatelessWidget {
     this.author = 'Placeholder Author',
     this.urlToImage = 'Need to put stock image',
     this.description = 'Placeholder Description',
+    this.content = 'Placeholder Content',
+    this.url = 'Placeholder url',
   });
+
+  void _navigateToDetailsPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailsPage(
+          title: title,
+          author: author,
+          urlToImage: urlToImage,
+          description: description,
+          content: content,
+          url: url,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +44,7 @@ class ArticleCard extends StatelessWidget {
           splashColor: Colors.blue.withAlpha(30),
           onTap: () {
             debugPrint('Card tapped.');
+            _navigateToDetailsPage(context);
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
