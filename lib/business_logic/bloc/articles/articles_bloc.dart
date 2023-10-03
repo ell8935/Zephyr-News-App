@@ -12,7 +12,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
     on<LoadArticles>(_onLoadArticles);
   }
 
-  void _onLoadArticles(LoadArticles event, Emitter<ArticlesState> emit) async {
+  _onLoadArticles(LoadArticles event, Emitter<ArticlesState> emit) async {
     try {
       final articles = await getArticles();
 

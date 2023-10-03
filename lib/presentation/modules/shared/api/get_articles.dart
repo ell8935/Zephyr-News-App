@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 final dio = Dio();
 
 Future<List<dynamic>> getArticles(
-    {String keywords = 'ISRAEL',
+    {String keywords = 'israel',
     String from = '0',
     String to = '0',
     String sortBy = 'relevancy'}) async {

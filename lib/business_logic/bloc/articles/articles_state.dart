@@ -13,6 +13,9 @@ final class ArticlesLoaded extends ArticlesState {
   final List<Articles> articles;
 
   const ArticlesLoaded({this.articles = const <Articles>[]});
+
+  @override
+  List<Object> get props => [articles];
 }
 
 class ArticlesError extends ArticlesState {

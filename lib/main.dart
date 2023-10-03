@@ -18,12 +18,8 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ArticlesBloc()..add(const LoadArticles()),
-        )
-      ],
+    return BlocProvider(
+      create: (context) => ArticlesBloc()..add(const LoadArticles()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

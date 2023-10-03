@@ -17,30 +17,3 @@ class LoadArticles extends ArticlesEvent {
   @override
   List<Object> get props => [article];
 }
-
-class AddArticles extends ArticlesEvent {
-  final Articles article;
-
-  const AddArticles({required this.article});
-
-  @override
-  List<Object> get props => [article];
-}
-
-class UpdateArticles extends ArticlesEvent {
-  final Articles article;
-
-  const UpdateArticles({required this.article});
-
-  @override
-  List<Object> get props => [article];
-}
-
-class DeleteArticles extends ArticlesEvent {
-  final Articles article;
-
-  const DeleteArticles({required this.article});
-
-  @override
-  List<Object> get props => [article];
-}
