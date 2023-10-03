@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/business_logic/bloc/filtered_search/filtered_search_bloc.dart';
+import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 import 'package:move_home_assignment/presentation/modules/shared/widgets/custom_search_bar.dart';
 import 'package:move_home_assignment/presentation/modules/shared/widgets/range_date_picker.dart';
 
@@ -14,8 +15,8 @@ class FilterBar extends StatefulWidget {
 }
 
 void handleSearch(BuildContext context, selectedFilters) {
-  BlocProvider.of<ArticlesBloc>(context)
-      .add(LoadArticlesWithFilters(filters: selectedFilters));
+  BlocProvider.of<ArticlesBloc>(context).add(LoadArticlesWithFilters(
+      filters: FilteredSearchEntity(keywords: selectedFilters)));
 }
 
 final TextEditingController textController = TextEditingController();
@@ -34,7 +35,8 @@ class _FilterBarState extends State<FilterBar> {
               const RangeDatePicker(),
               Column(children: [
                 CustomSearchBar(
-                  onSearchPressed: () => handleSearch(context, selectedFilters),
+                  onSearchPressed: () =>
+                      handleSearch(context, selectedFilters.keywords),
                   textController: textController,
                 ),
               ]),
