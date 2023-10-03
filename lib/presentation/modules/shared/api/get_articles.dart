@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:move_home_assignment/data/models/filtered_search_model.dart';
 
 final dio = Dio();
 
 Future<List<dynamic>> getArticles({
-  String filters = 'israel',
+  String? filters,
   // String from = '0',
   // String to = '0',
   // String sortBy = 'relevancy'

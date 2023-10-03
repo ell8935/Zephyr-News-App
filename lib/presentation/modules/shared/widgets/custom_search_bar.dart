@@ -14,35 +14,31 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: textController,
-                decoration: const InputDecoration(
-                  hintText: 'Search',
-                  border: InputBorder.none,
-                ),
-                onChanged: (query) {
-                  BlocProvider.of<FilteredSearchBloc>(context).add(
-                    LoadFilteredSearchQuery(searchQuery: query),
-                  );
-                },
-              ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      child: Column(
+        children: [
+          TextField(
+            controller: textController,
+            decoration: const InputDecoration(
+              hintText: 'Search',
+              border: InputBorder.none,
             ),
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: onSearchPressed,
-            ),
-          ],
-        ),
+            onChanged: (query) {
+              BlocProvider.of<FilteredSearchBloc>(context).add(
+                LoadFilteredSearchQuery(searchQuery: query),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: onSearchPressed,
+          ),
+        ],
       ),
     );
   }

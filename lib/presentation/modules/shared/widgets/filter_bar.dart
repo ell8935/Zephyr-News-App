@@ -12,8 +12,9 @@ class FilterBar extends StatefulWidget {
   _FilterBarState createState() => _FilterBarState();
 }
 
-void handleSearch(BuildContext context) {
-  BlocProvider.of<ArticlesBloc>(context).add(const LoadArticles());
+void handleSearch(BuildContext context, selectedFilters) {
+  BlocProvider.of<ArticlesBloc>(context)
+      .add(LoadArticlesWithFilters(filters: selectedFilters));
 }
 
 final TextEditingController textController = TextEditingController();
@@ -21,22 +22,28 @@ final TextEditingController textController = TextEditingController();
 class _FilterBarState extends State<FilterBar> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FilteredSearchBloc, FilteredSearchState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    // return Container();
+    return BlocBuilder<FilteredSearchBloc, FilteredSearchState>(
       builder: (context, state) {
-        return Row(
-          children: [
-            const RangeDatePicker(),
-            Expanded(
-              child: CustomSearchBar(
-                onSearchPressed: () => handleSearch(context),
-                textController: textController,
-              ),
-            ),
-          ],
-        );
+        if (state is FilteredSearchLoaded) {
+          // Extract the selected filters from the state
+          final selectedFilters = state.filters.keywords;
+          // return const Text('asd');
+          return Column(
+            children: [
+              const RangeDatePicker(),
+              Column(children: [
+                CustomSearchBar(
+                  onSearchPressed: () => handleSearch(context, selectedFilters),
+                  textController: textController,
+                ),
+              ]),
+            ],
+          );
+        } else {
+          // Handle other states or return a default UI
+          return const CircularProgressIndicator(); // Replace with appropriate UI
+        }
       },
     );
   }

@@ -17,3 +17,14 @@ class LoadArticles extends ArticlesEvent {
   @override
   List<Object> get props => [article];
 }
+
+class LoadArticlesWithFilters extends ArticlesEvent {
+  final String filters; // Update to accept a list of strings (keywords)
+
+  const LoadArticlesWithFilters({
+    required this.filters,
+  });
+
+  @override
+  List<Object> get props => [filters];
+}
