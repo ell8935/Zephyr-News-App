@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailsPage extends StatelessWidget {
   final String title;
@@ -17,6 +18,13 @@ class DetailsPage extends StatelessWidget {
     required this.content,
     this.url = '',
   });
+
+  Future<void> _launchURL(String url) async {
+    final finalUrl = Uri.parse(url);
+    if (await canLaunchUrl(finalUrl)) {
+      await launchUrl(finalUrl);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +47,15 @@ class DetailsPage extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           Text(
-            content,
+            '${content.substring(0, content.length - 16)}...', //this is to remove the tranctued text u get from the api
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 16.0),
-          Text(
-            url,
-            style: const TextStyle(fontSize: 16),
-          ),
+          url == ''
+              ? const Text('Sorry this is the end')
+              : ElevatedButton(
+                  onPressed: () => _launchURL(url),
+                  child: const Text('Keep reading'))
         ],
       ),
     );
