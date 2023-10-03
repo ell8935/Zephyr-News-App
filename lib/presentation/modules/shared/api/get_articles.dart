@@ -2,13 +2,16 @@ import 'package:dio/dio.dart';
 
 final dio = Dio();
 
-Future<List<dynamic>> getArticles(
-    {String keywords = 'israel',
-    String from = '0',
-    String to = '0',
-    String sortBy = 'relevancy'}) async {
+Future<List<dynamic>> getArticles({
+  String filters = 'israel',
+  // String from = '0',
+  // String to = '0',
+  // String sortBy = 'relevancy'
+}) async {
   final response = await dio.get(
-      'https://newsapi.org/v2/everything?q=$keywords&from=$from&to=$to&sortBy=$sortBy&apiKey=9dd723c7bfaf468da346c93685f6eb7a');
+      'https://newsapi.org/v2/everything?q=$filters&apiKey=9dd723c7bfaf468da346c93685f6eb7a');
+  // final response = await dio.get(
+  //     'https://newsapi.org/v2/everything?q=$keywords&from=$from&to=$to&sortBy=$sortBy&apiKey=9dd723c7bfaf468da346c93685f6eb7a');
 
   if (response.statusCode == 200) {
     // Check if the response status code is 200 (OK)

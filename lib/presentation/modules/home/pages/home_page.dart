@@ -17,14 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<Articles> articleList = [];
-
-  void handleSearch() {
-    BlocProvider.of<ArticlesBloc>(context).add(const LoadArticles());
-  }
-
-  final TextEditingController textController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return const Column(

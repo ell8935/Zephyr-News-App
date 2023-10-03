@@ -37,5 +37,6 @@ class ArticleFeed extends StatelessWidget {
         }
       },
     );
+    return const Text('asd');
   }
 }
