@@ -55,7 +55,14 @@ class ArticleCard extends StatelessWidget {
                 child: Image.network(
                   urlToImage,
                   fit: BoxFit.cover,
-                  //How do put an image if unable to get it
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    // Display a local image from assets when the network image fails to load
+                    return Image.asset(
+                      'assets/images/imageNotFound.png',
+                      fit: BoxFit.cover,
+                    );
+                  },
                 ),
               ),
               Text(
