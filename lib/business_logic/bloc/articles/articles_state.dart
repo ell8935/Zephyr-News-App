@@ -10,9 +10,9 @@ sealed class ArticlesState extends Equatable {
 final class ArticlesLoading extends ArticlesState {}
 
 final class ArticlesLoaded extends ArticlesState {
-  final List<Articles> articles;
+  final List<ArticleEntity> articles;
 
-  const ArticlesLoaded({this.articles = const <Articles>[]});
+  const ArticlesLoaded({this.articles = const <ArticleEntity>[]});
 
   @override
   List<Object> get props => [articles];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/business_logic/bloc/filters/filters_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/focused_article/focused_article_bloc.dart';
 import 'package:move_home_assignment/presentation/modules/home/pages/home_page.dart';
 import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
 
@@ -24,7 +25,12 @@ class MyApp extends StatelessWidget {
           create: (context) => ArticlesBloc()..add(const LoadArticles()),
         ),
         BlocProvider(
-            create: (context) => FiltersBloc()..add(const LoadFilters()))
+          create: (context) => FiltersBloc()..add(const LoadFilters()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FocusedArticleBloc()..add(const LoadFocusedArticle()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

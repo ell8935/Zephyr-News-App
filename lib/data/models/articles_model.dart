@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Articles extends Equatable {
+class ArticleEntity extends Equatable {
   final String url;
   final String title;
   final String author;
@@ -9,7 +9,7 @@ class Articles extends Equatable {
   final String publishedAt;
   final String description;
 
-  const Articles({
+  const ArticleEntity({
     required this.url,
     required this.title,
     required this.author,
@@ -19,7 +19,7 @@ class Articles extends Equatable {
     required this.description,
   });
 
-  Articles copyWith({
+  ArticleEntity copyWith({
     String? url,
     String? title,
     String? author,
@@ -28,7 +28,7 @@ class Articles extends Equatable {
     String? publishedAt,
     String? description,
   }) {
-    return Articles(
+    return ArticleEntity(
       url: url ?? this.url,
       title: title ?? this.title,
       author: author ?? this.author,
@@ -39,8 +39,8 @@ class Articles extends Equatable {
     );
   }
 
-  factory Articles.fromJson(Map<String, dynamic> json) {
-    return Articles(
+  factory ArticleEntity.fromJson(Map<String, dynamic> json) {
+    return ArticleEntity(
       url: json['url'] ?? "",
       title: json['title'] ?? "",
       author: json['author'] ?? "",

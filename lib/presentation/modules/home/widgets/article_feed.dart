@@ -43,12 +43,7 @@ class ArticleFeed extends StatelessWidget {
                 }
 
                 return ArticleCard(
-                  title: article.title,
-                  author: article.author,
-                  urlToImage: article.urlToImage,
-                  description: article.description,
-                  content: article.content,
-                  url: article.url,
+                  article: article,
                 );
               },
             ),

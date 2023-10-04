@@ -8,10 +8,10 @@ sealed class ArticlesEvent extends Equatable {
 }
 
 class LoadArticles extends ArticlesEvent {
-  final List<Articles> article;
+  final List<ArticleEntity> article;
 
   const LoadArticles({
-    this.article = const <Articles>[],
+    this.article = const <ArticleEntity>[],
   });
 
   @override

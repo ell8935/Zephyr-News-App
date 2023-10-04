@@ -17,8 +17,8 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
     try {
       final articles = await getArticles(filters: const FiltersEntity());
 
-      final List<Articles> articlesList = articles.map((articleData) {
-        return Articles.fromJson(articleData);
+      final List<ArticleEntity> articlesList = articles.map((articleData) {
+        return ArticleEntity.fromJson(articleData);
       }).toList();
 
       emit(ArticlesLoaded(articles: articlesList));
@@ -33,8 +33,8 @@ _onLoadArticlesWithFilters(
   try {
     final articles = await getArticles(filters: event.filters);
 
-    final List<Articles> articlesList = articles.map((articleData) {
-      return Articles.fromJson(articleData);
+    final List<ArticleEntity> articlesList = articles.map((articleData) {
+      return ArticleEntity.fromJson(articleData);
     }).toList();
 
     emit(ArticlesLoaded(articles: articlesList));

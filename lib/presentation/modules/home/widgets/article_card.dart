@@ -1,35 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/focused_article/focused_article_bloc.dart';
+import 'package:move_home_assignment/data/models/articles_model.dart';
 import 'package:move_home_assignment/presentation/modules/details/pages/details_page.dart';
 
 class ArticleCard extends StatelessWidget {
-  final String title;
-  final String author;
-  final String urlToImage;
-  final String description;
-  final String content;
-  final String url;
+  final ArticleEntity article;
 
   const ArticleCard({
     Key? key,
-    this.title = 'Placeholder Title',
-    this.author = 'Placeholder Author',
-    this.urlToImage = '',
-    this.description = 'Placeholder Description',
-    this.content = 'Placeholder Content',
-    this.url = '',
+    required this.article,
   }) : super(key: key);
 
+  // void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
+  //     String query, String fieldName) {
+  //   FiltersEntity updatedFilters;
+  //   switch (fieldName) {
+  //     case 'keywords':
+  //       updatedFilters = currentFilters.copyWith(keywords: query);
+  //       break;
+  //     case 'sortBy':
+  //       updatedFilters = currentFilters.copyWith(sortBy: query);
+  //       break;
+  //     default:
+  //       updatedFilters = currentFilters;
+  //   }
+  //   BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
+  //     keywords: updatedFilters.keywords,
+  //     from: updatedFilters.from,
+  //     to: updatedFilters.to,
+  //     sortBy: updatedFilters.sortBy,
+  //   ));
+  // }
+
+//   void _handleDispatchArticle(BuildContext context){
+
+//     BlocProvider.of<FocusedArticleBloc>(context).add(LoadFocusedArticle(
+// article: author
+//     ));
+
+//   }
   void _navigateToDetailsPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => DetailsPage(
-          title: title,
-          author: author,
-          urlToImage: urlToImage,
-          description: description,
-          content: content,
-          url: url,
+          title: article.title,
+          author: article.author,
+          urlToImage: article.urlToImage,
+          description: article.description,
+          content: article.content,
+          url: article.url,
         ),
       ),
     );
@@ -51,7 +72,7 @@ class ArticleCard extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    urlToImage,
+                    article.urlToImage,
                     fit: BoxFit.cover,
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
@@ -73,7 +94,7 @@ class ArticleCard extends StatelessWidget {
                           color: Color.fromARGB(255, 126, 126, 126)),
                     ),
                     Text(
-                      ' $author',
+                      ' ${article.author}',
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -82,7 +103,7 @@ class ArticleCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  title,
+                  article.title,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
@@ -92,7 +113,7 @@ class ArticleCard extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  description,
+                  article.description,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
