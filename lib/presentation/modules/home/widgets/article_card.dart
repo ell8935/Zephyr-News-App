@@ -18,14 +18,7 @@ class ArticleCard extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DetailsPage(
-          title: article.title,
-          author: article.author,
-          urlToImage: article.urlToImage,
-          description: article.description,
-          content: article.content,
-          url: article.url,
-        ),
+        builder: (context) => const DetailsPage(),
       ),
     );
   }
@@ -35,7 +28,7 @@ class ArticleCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        GestureDetector(
+        InkResponse(
           onTap: () => _navigateToDetailsPage(context),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -45,37 +38,42 @@ class ArticleCard extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.network(
-                    article.urlToImage,
-                    fit: BoxFit.cover,
-                    errorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
-                      // Display a local image from assets when the network image fails to load
-                      return Image.asset(
-                        'assets/images/imageNotFound.png',
-                        fit: BoxFit.cover,
-                      );
-                    },
+                  child: Hero(
+                    tag: article.url,
+                    child: Image.network(
+                      article.urlToImage,
+                      fit: BoxFit.cover,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        // Display a local image from assets when the network image fails to load
+                        return Image.asset(
+                          'assets/images/imageNotFound.png',
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
                   ),
                 ),
-                Wrap(
-                  children: [
-                    const Text(
-                      'by',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromARGB(255, 126, 126, 126)),
-                    ),
-                    Text(
-                      ' ${article.author}',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 126, 126, 126)),
-                    ),
-                  ],
-                ),
+                article.author.isEmpty | article.author.contains('facebook')
+                    ? const SizedBox.shrink()
+                    : Wrap(
+                        children: [
+                          const Text(
+                            'by',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 126, 126, 126)),
+                          ),
+                          Text(
+                            ' ${article.author}',
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Color.fromARGB(255, 126, 126, 126)),
+                          ),
+                        ],
+                      ),
                 Text(
                   article.title,
                   style: const TextStyle(

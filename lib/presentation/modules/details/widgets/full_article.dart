@@ -30,17 +30,20 @@ class FullArticle extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.network(
-                  article.urlToImage,
-                  fit: BoxFit.cover,
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    // Display a local image from assets when the network image fails to load
-                    return Image.asset(
-                      'assets/images/imageNotFound.png',
-                      fit: BoxFit.cover,
-                    );
-                  },
+                Hero(
+                  tag: article.url,
+                  child: Image.network(
+                    article.urlToImage,
+                    fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      // Display a local image from assets when the network image fails to load
+                      return Image.asset(
+                        'assets/images/imageNotFound.png',
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
                 ),
                 Wrap(
                   children: [

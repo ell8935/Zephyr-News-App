@@ -31,17 +31,21 @@ class _CustomAppBarState extends State<CustomAppBar> {
         icon: Icon(isSearching ? Icons.close : Icons.search),
         onPressed: toggleSearch,
       ),
-      title: isSearching ? const FilterBar() : const Text('Headlines'),
+      title: isSearching
+          ? const FilterBar()
+          : Transform.scale(
+              scale: 0.5, // Adjust the scale factor as needed
+              child: Image.asset(
+                'assets/images/TitleLogo.png',
+              ),
+            ),
       actions: isSearching
           ? []
           : <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 30,
-                  child: Image.asset(
-                    'assets/logos/Logo.png',
-                  ),
+                padding: const EdgeInsets.all(13.0),
+                child: Image.asset(
+                  'assets/logos/Logo.png',
                 ),
               ),
             ],

@@ -17,6 +17,7 @@ class _RangeDatePickerState extends State<RangeDatePicker> {
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: 35,
+      color: const Color.fromRGBO(104, 81, 164, 1),
       icon: const Icon(Icons.date_range_rounded),
       onPressed: () async {
         final DateTimeRange? dateTimeRange = await showDateRangePicker(

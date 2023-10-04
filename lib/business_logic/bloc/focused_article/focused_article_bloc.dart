@@ -16,7 +16,6 @@ class FocusedArticleBloc
   FutureOr<void> _onLoadArticles(
       LoadFocusedArticle event, Emitter<FocusedArticleState> emit) {
     try {
-      print(event.article);
       if (event.article != null) {
         ArticleEntity updatedArticle = ArticleEntity(
           url: event.article!.url,

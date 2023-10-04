@@ -102,14 +102,10 @@ class _FilterBarState extends State<FilterBar> {
           return Row(
             children: [
               Expanded(
-                child: FocusScope(
-                  node: _textFocusScopeNode,
-                  child: CustomSearchBar(
-                    textController: textController,
-                    // focusNode: _textFieldFocusNode,
-                    onChanged: (query) => handleFieldChange(
-                        context, currentFilters, query, 'keywords'),
-                  ),
+                child: CustomSearchBar(
+                  textController: textController,
+                  onChanged: (query) => handleFieldChange(
+                      context, currentFilters, query, 'keywords'),
                 ),
               ),
               RangeDatePicker(
@@ -117,14 +113,12 @@ class _FilterBarState extends State<FilterBar> {
                     handleDateChange(context, currentFilters, from, to),
               ),
               IconButton(
-                icon: Icon(
-                    _textFieldFocusNode.hasFocus ? Icons.close : Icons.search),
-                onPressed: () {
-                  toggleSearch();
-                  if (!_textFieldFocusNode.hasFocus) {
-                    _textFocusScopeNode.requestFocus();
-                  }
-                },
+                icon: const Icon(Icons.send),
+                color: const Color.fromARGB(255, 65, 159, 199),
+                onPressed: textController
+                        .text.isEmpty // Conditionally enable/disable IconButton
+                    ? null // Disabled if the CustomSearchBar is empty
+                    : () => handleSearch(context, currentFilters),
               ),
             ],
           );
