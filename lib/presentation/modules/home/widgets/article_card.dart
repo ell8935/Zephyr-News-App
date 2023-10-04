@@ -10,14 +10,14 @@ class ArticleCard extends StatelessWidget {
   final String url;
 
   const ArticleCard({
-    super.key,
+    Key? key,
     this.title = 'Placeholder Title',
     this.author = 'Placeholder Author',
     this.urlToImage = 'Need to put stock image',
     this.description = 'Placeholder Description',
     this.content = 'Placeholder Content',
     this.url = 'Placeholder url',
-  });
+  }) : super(key: key);
 
   void _navigateToDetailsPage(BuildContext context) {
     Navigator.push(
@@ -37,71 +37,78 @@ class ArticleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        InkWell(
           onTap: () {
-            debugPrint('Card tapped.');
             _navigateToDetailsPage(context);
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  urlToImage,
-                  fit: BoxFit.cover,
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    // Display a local image from assets when the network image fails to load
-                    return Image.asset(
-                      'assets/images/imageNotFound.png',
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ),
-              ),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Wrap(
-                children: [
-                  const Text(
-                    'by',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.network(
+                    urlToImage,
+                    fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      // Display a local image from assets when the network image fails to load
+                      return Image.asset(
+                        'assets/images/imageNotFound.png',
+                        fit: BoxFit.cover,
+                      );
+                    },
                   ),
-                  Text(
-                    ' $author',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                ),
+                Wrap(
+                  children: [
+                    const Text(
+                      'by',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 126, 126, 126)),
                     ),
+                    Text(
+                      ' $author',
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 126, 126, 126)),
+                    ),
+                  ],
+                ),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                description,
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
-            ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+        const Divider(
+          thickness: 0.5,
+          color: Color.fromARGB(255, 212, 211, 211),
+        ),
+      ],
     );
   }
 }
