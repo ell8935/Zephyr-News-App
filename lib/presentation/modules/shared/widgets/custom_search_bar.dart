@@ -14,23 +14,11 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Column(
-        children: [
-          TextField(
-              controller: textController,
-              decoration: const InputDecoration(
-                hintText: 'Search',
-                border: InputBorder.none,
-              ),
-              onChanged: onChanged),
-        ],
-      ),
-    );
+    return TextField(
+        controller: textController,
+        decoration: const InputDecoration(
+          hintText: 'Search',
+        ),
+        onChanged: onChanged);
   }
 }

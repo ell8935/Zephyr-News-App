@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ArticlesBloc()..add(const LoadArticles()),
         ),
         BlocProvider(
-            create: (context) =>
-                FiltersBloc()..add(const LoadFilters(sortBy: 'asd')))
+            create: (context) => FiltersBloc()..add(const LoadFilters()))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

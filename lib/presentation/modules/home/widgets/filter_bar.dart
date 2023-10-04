@@ -15,13 +15,16 @@ class FilterBar extends StatefulWidget {
 }
 
 void handleSearch(BuildContext context, FiltersEntity currentFilters) {
-  BlocProvider.of<ArticlesBloc>(context).add(LoadArticlesWithFilters(
+  BlocProvider.of<ArticlesBloc>(context).add(
+    LoadArticlesWithFilters(
       filters: FiltersEntity(
-    keywords: currentFilters.keywords,
-    from: currentFilters.from,
-    to: currentFilters.to,
-    sortBy: currentFilters.sortBy,
-  )));
+        keywords: currentFilters.keywords,
+        from: currentFilters.from,
+        to: currentFilters.to,
+        sortBy: currentFilters.sortBy,
+      ),
+    ),
+  );
 }
 
 void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
@@ -65,32 +68,28 @@ class _FilterBarState extends State<FilterBar> {
     return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         if (state is FiltersLoaded) {
-          // Extract the selected filters from the state
           final currentFilters = state.filters;
-          return Column(
+          return Row(
             children: [
-              IconButton(
-                icon: const Icon(Icons.search),
-                onPressed: () => handleSearch(context, currentFilters),
-              ),
-              Text(
-                state.filters.sortBy!,
-                style: const TextStyle(color: Colors.black),
+              Expanded(
+                child: CustomSearchBar(
+                  textController: textController,
+                  onChanged: (query) => handleFieldChange(
+                      context, currentFilters, query, 'keywords'),
+                ),
               ),
               RangeDatePicker(
-                  onChanged: (from, to) =>
-                      handleDateChange(context, currentFilters, from, to)),
-              Column(children: [
-                CustomSearchBar(
-                    textController: textController,
-                    onChanged: (query) => handleFieldChange(
-                        context, currentFilters, query, 'keywords')),
-              ]),
+                onChanged: (from, to) =>
+                    handleDateChange(context, currentFilters, from, to),
+              ),
+              IconButton(
+                icon: const Icon(Icons.send),
+                onPressed: () => handleSearch(context, currentFilters),
+              ),
             ],
           );
         } else {
-          // Handle other states or return a default UI
-          return const CircularProgressIndicator(); // Replace with appropriate UI
+          return const CircularProgressIndicator();
         }
       },
     );
