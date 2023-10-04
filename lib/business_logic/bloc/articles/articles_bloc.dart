@@ -15,10 +15,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
 
   _onLoadArticles(LoadArticles event, Emitter<ArticlesState> emit) async {
     try {
-      final articles = await getArticles(
-          filters: const FiltersEntity(
-        sortBy: 'asd',
-      ));
+      final articles = await getArticles(filters: const FiltersEntity());
 
       final List<Articles> articlesList = articles.map((articleData) {
         return Articles.fromJson(articleData);
@@ -34,8 +31,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
 _onLoadArticlesWithFilters(
     LoadArticlesWithFilters event, Emitter<ArticlesState> emit) async {
   try {
-    final articles = await getArticles(
-        filters: event.filters); // Pass filters to getArticles
+    final articles = await getArticles(filters: event.filters);
 
     final List<Articles> articlesList = articles.map((articleData) {
       return Articles.fromJson(articleData);
