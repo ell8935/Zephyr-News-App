@@ -14,19 +14,26 @@ class FocusedArticleBloc
   }
 
   FutureOr<void> _onLoadArticles(
-      LoadFocusedArticle event, Emitter<FocusedArticleState> emit) async* {
-    yield FocusedArticleInitial();
+      LoadFocusedArticle event, Emitter<FocusedArticleState> emit) {
     try {
-      // Fetch articles here. Replace this with your actual data fetching logic.
-      const ArticleEntity article = ArticleEntity(
-          url: 's',
-          title: 's',
-          author: 's',
-          content: 's',
-          urlToImage: 's',
-          publishedAt: 's',
-          description: 's');
-      yield const FocusedArticleLoaded(article: article);
+      print(event.article);
+      if (event.article != null) {
+        ArticleEntity updatedArticle = ArticleEntity(
+          url: event.article!.url,
+          title: event.article!.title,
+          author: event.article!.author,
+          content: event.article!.content,
+          urlToImage: event.article!.urlToImage,
+          publishedAt: event.article!.publishedAt,
+          description: event.article!.description,
+        );
+
+        emit(FocusedArticleLoaded(article: updatedArticle));
+      } else {
+        // Handle the case where event.article or its url is null
+        // You can emit an error state or handle it as needed.
+        // emit(FocusedArticleError("Article or URL is null"));
+      }
     } catch (e) {
       print(e);
       // yield ArticlesError("Failed to load articles: $e");

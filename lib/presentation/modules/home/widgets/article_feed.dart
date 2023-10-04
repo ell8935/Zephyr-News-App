@@ -33,13 +33,7 @@ class ArticleFeed extends StatelessWidget {
                   return const GreetingsCard();
                 }
                 if (index == 0 && isDetails == true) {
-                  return FullArticle(
-                    title: article.title,
-                    author: article.author,
-                    urlToImage: article.urlToImage,
-                    content: article.content,
-                    url: article.url,
-                  );
+                  return const FullArticle();
                 }
 
                 return ArticleCard(

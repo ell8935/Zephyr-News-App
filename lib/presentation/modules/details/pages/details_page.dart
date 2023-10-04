@@ -22,7 +22,6 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('in Details');
     return const Material(
       child: Column(
         children: [

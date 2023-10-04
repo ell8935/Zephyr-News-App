@@ -12,35 +12,9 @@ class ArticleCard extends StatelessWidget {
     required this.article,
   }) : super(key: key);
 
-  // void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
-  //     String query, String fieldName) {
-  //   FiltersEntity updatedFilters;
-  //   switch (fieldName) {
-  //     case 'keywords':
-  //       updatedFilters = currentFilters.copyWith(keywords: query);
-  //       break;
-  //     case 'sortBy':
-  //       updatedFilters = currentFilters.copyWith(sortBy: query);
-  //       break;
-  //     default:
-  //       updatedFilters = currentFilters;
-  //   }
-  //   BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
-  //     keywords: updatedFilters.keywords,
-  //     from: updatedFilters.from,
-  //     to: updatedFilters.to,
-  //     sortBy: updatedFilters.sortBy,
-  //   ));
-  // }
-
-//   void _handleDispatchArticle(BuildContext context){
-
-//     BlocProvider.of<FocusedArticleBloc>(context).add(LoadFocusedArticle(
-// article: author
-//     ));
-
-//   }
   void _navigateToDetailsPage(BuildContext context) {
+    BlocProvider.of<FocusedArticleBloc>(context)
+        .add(LoadFocusedArticle(article: article));
     Navigator.push(
       context,
       MaterialPageRoute(
