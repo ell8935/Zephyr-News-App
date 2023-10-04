@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
+import 'package:move_home_assignment/presentation/modules/details/widgets/full_article.dart';
 import 'package:move_home_assignment/presentation/modules/home/widgets/article_card.dart';
-import 'package:move_home_assignment/presentation/modules/home/widgets/article_card_skeleton.dart';
+import 'package:move_home_assignment/presentation/modules/home/widgets/article_feed_skeleton.dart';
 import 'package:move_home_assignment/presentation/modules/home/widgets/greetings_card.dart';
 
 class ArticleFeed extends StatelessWidget {
   final bool? isHomePage;
+  final bool? isDetails;
 
   const ArticleFeed({
     super.key,
     this.isHomePage = false,
+    this.isDetails = false,
   });
 
   @override
@@ -19,15 +21,7 @@ class ArticleFeed extends StatelessWidget {
     return BlocBuilder<ArticlesBloc, ArticlesState>(
       builder: (context, state) {
         if (state is ArticlesLoading) {
-          return Expanded(
-            child: ListView.builder(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) {
-                return const ArticleCardSkeleton();
-              },
-            ),
-          );
+          return const ArticleFeedSkeleton();
         } else if (state is ArticlesLoaded) {
           return Expanded(
             child: ListView.builder(
@@ -38,6 +32,16 @@ class ArticleFeed extends StatelessWidget {
                 if (index == 0 && isHomePage == true) {
                   return const GreetingsCard();
                 }
+                if (index == 0 && isDetails == true) {
+                  return FullArticle(
+                    title: article.title,
+                    author: article.author,
+                    urlToImage: article.urlToImage,
+                    content: article.content,
+                    url: article.url,
+                  );
+                }
+
                 return ArticleCard(
                   title: article.title,
                   author: article.author,

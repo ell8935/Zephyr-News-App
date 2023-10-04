@@ -40,10 +40,8 @@ class ArticleCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        InkWell(
-          onTap: () {
-            _navigateToDetailsPage(context);
-          },
+        GestureDetector(
+          onTap: () => _navigateToDetailsPage(context),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

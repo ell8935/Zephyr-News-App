@@ -11,69 +11,88 @@ class FilterBar extends StatefulWidget {
   const FilterBar({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _FilterBarState createState() => _FilterBarState();
 }
 
-void handleSearch(BuildContext context, FiltersEntity currentFilters) {
-  BlocProvider.of<ArticlesBloc>(context).add(
-    LoadArticlesWithFilters(
-      filters: FiltersEntity(
-        keywords: currentFilters.keywords,
-        from: currentFilters.from,
-        to: currentFilters.to,
-        sortBy: currentFilters.sortBy,
-      ),
-    ),
-  );
-  _navigateToHomePage(context);
-}
-
-void _navigateToHomePage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => const HomePage(),
-    ),
-  );
-}
-
-void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
-    String query, String fieldName) {
-  FiltersEntity updatedFilters;
-  switch (fieldName) {
-    case 'keywords':
-      updatedFilters = currentFilters.copyWith(keywords: query);
-      break;
-    case 'sortBy':
-      updatedFilters = currentFilters.copyWith(sortBy: query);
-      break;
-    default:
-      updatedFilters = currentFilters;
-  }
-  BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
-    keywords: updatedFilters.keywords,
-    from: updatedFilters.from,
-    to: updatedFilters.to,
-    sortBy: updatedFilters.sortBy,
-  ));
-}
-
-void handleDateChange(BuildContext context, FiltersEntity currentFilters,
-    String from, String to) {
-  FiltersEntity updatedFilters = currentFilters.copyWith(from: from, to: to);
-
-  BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
-    keywords: updatedFilters.keywords,
-    from: updatedFilters.from,
-    to: updatedFilters.to,
-    sortBy: updatedFilters.sortBy,
-  ));
-}
-
-final TextEditingController textController = TextEditingController();
-
 class _FilterBarState extends State<FilterBar> {
+  final FocusScopeNode _textFocusScopeNode = FocusScopeNode();
+  final FocusNode _textFieldFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _textFocusScopeNode.dispose();
+    _textFieldFocusNode.dispose();
+    super.dispose();
+  }
+
+  void toggleSearch() {
+    setState(() {
+      if (_textFieldFocusNode.hasFocus) {
+        _textFieldFocusNode.unfocus();
+      } else {
+        _textFieldFocusNode.requestFocus();
+      }
+    });
+  }
+
+  void handleSearch(BuildContext context, FiltersEntity currentFilters) {
+    BlocProvider.of<ArticlesBloc>(context).add(
+      LoadArticlesWithFilters(
+        filters: FiltersEntity(
+          keywords: currentFilters.keywords,
+          from: currentFilters.from,
+          to: currentFilters.to,
+          sortBy: currentFilters.sortBy,
+        ),
+      ),
+    );
+    _navigateToHomePage(context);
+  }
+
+  void _navigateToHomePage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomePage(),
+      ),
+    );
+  }
+
+  void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
+      String query, String fieldName) {
+    FiltersEntity updatedFilters;
+    switch (fieldName) {
+      case 'keywords':
+        updatedFilters = currentFilters.copyWith(keywords: query);
+        break;
+      case 'sortBy':
+        updatedFilters = currentFilters.copyWith(sortBy: query);
+        break;
+      default:
+        updatedFilters = currentFilters;
+    }
+    BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
+      keywords: updatedFilters.keywords,
+      from: updatedFilters.from,
+      to: updatedFilters.to,
+      sortBy: updatedFilters.sortBy,
+    ));
+  }
+
+  void handleDateChange(BuildContext context, FiltersEntity currentFilters,
+      String from, String to) {
+    FiltersEntity updatedFilters = currentFilters.copyWith(from: from, to: to);
+
+    BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
+      keywords: updatedFilters.keywords,
+      from: updatedFilters.from,
+      to: updatedFilters.to,
+      sortBy: updatedFilters.sortBy,
+    ));
+  }
+
+  final TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FiltersBloc, FiltersState>(
@@ -83,10 +102,14 @@ class _FilterBarState extends State<FilterBar> {
           return Row(
             children: [
               Expanded(
-                child: CustomSearchBar(
-                  textController: textController,
-                  onChanged: (query) => handleFieldChange(
-                      context, currentFilters, query, 'keywords'),
+                child: FocusScope(
+                  node: _textFocusScopeNode,
+                  child: CustomSearchBar(
+                    textController: textController,
+                    // focusNode: _textFieldFocusNode,
+                    onChanged: (query) => handleFieldChange(
+                        context, currentFilters, query, 'keywords'),
+                  ),
                 ),
               ),
               RangeDatePicker(
@@ -94,8 +117,14 @@ class _FilterBarState extends State<FilterBar> {
                     handleDateChange(context, currentFilters, from, to),
               ),
               IconButton(
-                icon: const Icon(Icons.send),
-                onPressed: () => handleSearch(context, currentFilters),
+                icon: Icon(
+                    _textFieldFocusNode.hasFocus ? Icons.close : Icons.search),
+                onPressed: () {
+                  toggleSearch();
+                  if (!_textFieldFocusNode.hasFocus) {
+                    _textFocusScopeNode.requestFocus();
+                  }
+                },
               ),
             ],
           );

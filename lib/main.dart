@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/business_logic/bloc/filtered_search/filters_bloc.dart';
 import 'package:move_home_assignment/presentation/modules/home/pages/home_page.dart';
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: const SafeArea(child: Scaffold(body: HomePage())),
+        home: const HomePage(),
       ),
     );
   }
