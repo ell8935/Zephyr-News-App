@@ -38,7 +38,14 @@ class DetailsPage extends StatelessWidget {
           Image.network(
             urlToImage,
             fit: BoxFit.cover,
-            height: 200, // Set the desired image height
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              // Display a local image from assets when the network image fails to load
+              return Image.asset(
+                'assets/images/imageNotFound.png',
+                fit: BoxFit.cover,
+              );
+            },
           ),
           const SizedBox(height: 16.0),
           Text(

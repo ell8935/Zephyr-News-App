@@ -43,6 +43,10 @@ _onLoadArticlesWithFilters(
 
     emit(ArticlesLoaded(articles: articlesList));
   } catch (e) {
-    emit(const ArticlesError(errorMessage: 'Failed to load articles'));
+    if (e is DioErrorException) {
+      emit(ArticlesError(errorMessage: e.message));
+    } else {
+      emit(ArticlesError(errorMessage: 'An error occurred: $e'));
+    }
   }
 }
