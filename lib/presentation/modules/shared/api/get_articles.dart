@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:move_home_assignment/data/models/filtered_search_model.dart';
+import 'package:move_home_assignment/data/models/filters_model.dart';
 
 final dio = Dio();
 
 Future<List<dynamic>> getArticles({
-  required FilteredSearchEntity filters,
+  required FiltersEntity filters,
 }) async {
   try {
     print(filters);

@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class FilteredSearchEntity extends Equatable {
+class FiltersEntity extends Equatable {
   final String? keywords;
   final String? from;
   final String? to;
   final String? sortBy;
 
-  const FilteredSearchEntity({
+  const FiltersEntity({
     this.keywords,
     this.from,
     this.to,
@@ -14,13 +14,13 @@ class FilteredSearchEntity extends Equatable {
   });
 
   // Add a copyWith method to create a new instance with updated values
-  FilteredSearchEntity copyWith({
+  FiltersEntity copyWith({
     String? keywords,
     String? from,
     String? to,
     String? sortBy,
   }) {
-    return FilteredSearchEntity(
+    return FiltersEntity(
       keywords: keywords ?? this.keywords,
       from: from ?? this.from,
       to: to ?? this.to,
@@ -28,8 +28,8 @@ class FilteredSearchEntity extends Equatable {
     );
   }
 
-  factory FilteredSearchEntity.fromJson(Map<String, dynamic> json) {
-    return FilteredSearchEntity(
+  factory FiltersEntity.fromJson(Map<String, dynamic> json) {
+    return FiltersEntity(
       keywords: json['keywords'] ?? "",
       sortBy: json['sortBy'] ?? "",
       to: json['to'] ?? "",

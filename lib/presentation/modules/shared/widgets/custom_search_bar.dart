@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/filtered_search/filtered_search_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/filtered_search/filters_bloc.dart';
 
 class CustomSearchBar extends StatelessWidget {
-  final VoidCallback onSearchPressed;
+  final onChanged;
   final TextEditingController textController;
 
   const CustomSearchBar({
     Key? key,
-    required this.onSearchPressed,
     required this.textController,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -23,21 +23,12 @@ class CustomSearchBar extends StatelessWidget {
       child: Column(
         children: [
           TextField(
-            controller: textController,
-            decoration: const InputDecoration(
-              hintText: 'Search',
-              border: InputBorder.none,
-            ),
-            onChanged: (query) {
-              BlocProvider.of<FilteredSearchBloc>(context).add(
-                LoadFilteredSearchKeywords(keywords: query),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: onSearchPressed,
-          ),
+              controller: textController,
+              decoration: const InputDecoration(
+                hintText: 'Search',
+                border: InputBorder.none,
+              ),
+              onChanged: onChanged),
         ],
       ),
     );

@@ -55,6 +55,7 @@ class ArticleCard extends StatelessWidget {
                 child: Image.network(
                   urlToImage,
                   fit: BoxFit.cover,
+                  //How do put an image if unable to get it
                 ),
               ),
               Text(
