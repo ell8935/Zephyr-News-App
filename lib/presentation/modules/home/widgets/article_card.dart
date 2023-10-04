@@ -13,10 +13,10 @@ class ArticleCard extends StatelessWidget {
     Key? key,
     this.title = 'Placeholder Title',
     this.author = 'Placeholder Author',
-    this.urlToImage = 'Need to put stock image',
+    this.urlToImage = '',
     this.description = 'Placeholder Description',
     this.content = 'Placeholder Content',
-    this.url = 'Placeholder url',
+    this.url = '',
   }) : super(key: key);
 
   void _navigateToDetailsPage(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:move_home_assignment/presentation/modules/home/widgets/article_feed.dart'; // Import the ArticleFeed widget
 
 class DetailsPage extends StatelessWidget {
   final String title;
@@ -30,41 +31,135 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title), // Display the title in the app bar
+        title: Text(title),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
+      body: Column(
         children: <Widget>[
-          Image.network(
-            urlToImage,
-            fit: BoxFit.cover,
-            errorBuilder: (BuildContext context, Object exception,
-                StackTrace? stackTrace) {
-              // Display a local image from assets when the network image fails to load
-              return Image.asset(
-                'assets/images/imageNotFound.png',
-                fit: BoxFit.cover,
-              );
-            },
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(16.0),
+                children: <Widget>[
+                  Image.network(
+                    urlToImage,
+                    fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      // Display a local image from assets when the network image fails to load
+                      return Image.asset(
+                        'assets/images/imageNotFound.png',
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
+                  Wrap(
+                    children: [
+                      const Text(
+                        'by',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 126, 126, 126)),
+                      ),
+                      Text(
+                        ' $author',
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 126, 126, 126)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    '${content.substring(0, content.length - 16)}...', //this is to remove the tranctued text u get from the api
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 16.0),
+                  url == ''
+                      ? const Text('Sorry this is the end')
+                      : ElevatedButton(
+                          onPressed: () => _launchURL(url),
+                          child: const Text('Keep reading'))
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 16.0),
-          Text(
-            'Author: $author',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16.0),
-          Text(
-            '${content.substring(0, content.length - 16)}...', //this is to remove the tranctued text u get from the api
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 16.0),
-          url == ''
-              ? const Text('Sorry this is the end')
-              : ElevatedButton(
-                  onPressed: () => _launchURL(url),
-                  child: const Text('Keep reading'))
+
+          // Place the ArticleFeed at the bottom
+          const ArticleFeed(),
         ],
       ),
     );
   }
 }
+
+
+        // children: <Widget>[
+        //   Image.network(
+        //     urlToImage,
+        //     fit: BoxFit.cover,
+        //     errorBuilder: (BuildContext context, Object exception,
+        //         StackTrace? stackTrace) {
+        //       // Display a local image from assets when the network image fails to load
+        //       return Image.asset(
+        //         'assets/images/imageNotFound.png',
+        //         fit: BoxFit.cover,
+        //       );
+        //     },
+        //   ),
+        //   Wrap(
+        //     children: [
+        //       const Text(
+        //         'by',
+        //         style: TextStyle(
+        //             fontSize: 16,
+        //             fontWeight: FontWeight.w400,
+        //             color: Color.fromARGB(255, 126, 126, 126)),
+        //       ),
+        //       Text(
+        //         ' $author',
+        //         style: const TextStyle(
+        //             fontSize: 16,
+        //             fontWeight: FontWeight.w700,
+        //             color: Color.fromARGB(255, 126, 126, 126)),
+        //       ),
+        //     ],
+        //   ),
+        //   const SizedBox(
+        //     height: 10,
+        //   ),
+        //   Text(
+        //     title,
+        //     style: const TextStyle(
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.w900,
+        //     ),
+        //   ),
+        //   const SizedBox(
+        //     height: 50,
+        //   ),
+        //   Text(
+        //     '${content.substring(0, content.length - 16)}...', //this is to remove the tranctued text u get from the api
+        //     style: const TextStyle(fontSize: 16),
+        //   ),
+        //   const SizedBox(height: 16.0),
+        //   url == ''
+        //       ? const Text('Sorry this is the end')
+        //       : ElevatedButton(
+        //           onPressed: () => _launchURL(url),
+        //           child: const Text('Keep reading'))
+        // ],

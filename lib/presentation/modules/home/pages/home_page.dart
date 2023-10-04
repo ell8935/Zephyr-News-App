@@ -18,7 +18,11 @@ class _HomePageState extends State<HomePage> {
         appBar: buildAppBar(),
         body: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ArticleFeed()],
+          children: [
+            ArticleFeed(
+              isHomePage: true,
+            )
+          ],
         ));
   }
 
