@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/filtered_search/filters_bloc.dart';
+import 'package:move_home_assignment/business_logic/bloc/filters/filters_bloc.dart';
 import 'package:move_home_assignment/data/models/filters_model.dart';
 import 'package:move_home_assignment/presentation/modules/home/pages/home_page.dart';
 import 'package:move_home_assignment/presentation/modules/shared/widgets/custom_search_bar.dart';
