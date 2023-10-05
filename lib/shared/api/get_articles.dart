@@ -11,7 +11,7 @@ Future<List<dynamic>> getArticles({
   try {
     final response = await dio.get(
         // due to ease of use i've left the api key here but in a real project i would've put it inside .env file
-        'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&apiKey=9dd723c7bfaf468da346c93685f6eb7a&page=$page&pageSize=10');
+        'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&apiKey=9dd723c7bfaf468da346c93685 f6eb7a&page=$page&pageSize=10');
     Map<String, dynamic> jsonResponse = response.data;
 
     if (jsonResponse.containsKey("articles")) {

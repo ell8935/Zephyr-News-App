@@ -4,6 +4,7 @@ import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/modules/home/widgets/article_card.dart';
 import 'package:move_home_assignment/modules/home/widgets/article_feed_skeleton.dart';
 import 'package:move_home_assignment/shared/models/article_model.dart';
+import 'package:move_home_assignment/shared/widgets/custom_error_msg.dart';
 
 class ArticleFeed extends StatelessWidget {
   final ArticleEntity? excludeFromFeed;
@@ -24,11 +25,10 @@ class ArticleFeed extends StatelessWidget {
         }
         if (state is ArticlesError) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Oops!'),
-              const Text('Something went wrong'),
-              Text(state.errorMessage),
+              CustomErrorMsg(
+                errorMsg: state.errorMessage,
+              ),
               ElevatedButton(
                 onPressed: () {
                   context
