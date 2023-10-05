@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/models/article_model.dart';
-import 'package:move_home_assignment/models/filters_model.dart';
-import 'package:move_home_assignment/ui/modules/shared/api/get_articles.dart';
-import 'package:move_home_assignment/ui/modules/shared/utils/custom_exception.dart';
+import 'package:move_home_assignment/shared/models/article_model.dart';
+import 'package:move_home_assignment/shared/models/filters_model.dart';
+import 'package:move_home_assignment/shared/api/get_articles.dart';
+import 'package:move_home_assignment/shared/utils/custom_exception.dart';
 
 part 'articles_event.dart';
 part 'articles_state.dart';

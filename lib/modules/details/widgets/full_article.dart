@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/ui/modules/home/widgets/article_card_skeleton.dart';
+import 'package:move_home_assignment/modules/home/widgets/article_card_skeleton.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
 

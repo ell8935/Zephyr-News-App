@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
-import 'package:move_home_assignment/models/article_model.dart';
-import 'package:move_home_assignment/ui/modules/details/pages/details_page.dart';
+import 'package:move_home_assignment/shared/models/article_model.dart';
+import 'package:move_home_assignment/modules/details/pages/details_page.dart';
 
 class ArticleCard extends StatelessWidget {
   final ArticleEntity article;

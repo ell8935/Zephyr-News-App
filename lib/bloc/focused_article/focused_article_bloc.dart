@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:move_home_assignment/models/article_model.dart';
+import 'package:move_home_assignment/shared/models/article_model.dart';
 
 part 'focused_article_event.dart';
 part 'focused_article_state.dart';

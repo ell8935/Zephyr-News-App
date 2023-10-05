@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
-import 'package:move_home_assignment/models/filters_model.dart';
-import 'package:move_home_assignment/ui/modules/home/pages/home_page.dart';
-import 'package:move_home_assignment/ui/modules/shared/widgets/custom_search_bar.dart';
-import 'package:move_home_assignment/ui/modules/shared/widgets/range_date_picker.dart';
+import 'package:move_home_assignment/shared/models/filters_model.dart';
+import 'package:move_home_assignment/modules/home/pages/home_page.dart';
+import 'package:move_home_assignment/shared/widgets/custom_search_bar.dart';
+import 'package:move_home_assignment/shared/widgets/range_date_picker.dart';
 
 class FilterBar extends StatefulWidget {
   const FilterBar({Key? key}) : super(key: key);

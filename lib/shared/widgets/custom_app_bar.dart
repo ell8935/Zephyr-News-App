@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/ui/modules/home/widgets/filter_bar.dart';
+import 'package:move_home_assignment/modules/home/widgets/filter_bar.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({

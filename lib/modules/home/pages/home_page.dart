@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/ui/modules/home/widgets/article_feed.dart';
-import 'package:move_home_assignment/ui/modules/home/widgets/greetings_card.dart';
-import 'package:move_home_assignment/ui/modules/shared/widgets/custom_app_bar.dart';
+import 'package:move_home_assignment/modules/home/widgets/article_feed.dart';
+import 'package:move_home_assignment/modules/home/widgets/greetings_card.dart';
+import 'package:move_home_assignment/shared/widgets/custom_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

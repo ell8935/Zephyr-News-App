@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
 import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
-import 'package:move_home_assignment/ui/modules/home/pages/home_page.dart';
+import 'package:move_home_assignment/modules/home/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
