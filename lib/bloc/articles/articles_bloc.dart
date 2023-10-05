@@ -11,6 +11,7 @@ part 'articles_state.dart';
 class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   ArticlesBloc() : super(ArticlesLoading()) {
     on<LoadArticlesWithFilters>(_onLoadArticlesWithFilters);
+    on<LoadMoreArticlesWithFilters>(_onLoadMoreArticlesWithFilters);
   }
 
   _onLoadArticlesWithFilters(
@@ -23,6 +24,32 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
       }).toList();
 
       emit(ArticlesLoaded(articles: articlesList));
+    } catch (e) {
+      if (e is CustomException) emit(ArticlesError(errorMessage: e.message));
+    }
+  }
+
+  _onLoadMoreArticlesWithFilters(
+      LoadMoreArticlesWithFilters event, Emitter<ArticlesState> emit) async {
+    try {
+      if (state is ArticlesLoaded) {
+        // each page is 20 articles long
+        final double page =
+            ((state as ArticlesLoaded).articles.length / 20) + 1;
+
+        final articles = await getArticles(filters: event.filters, page: page);
+
+        final List<ArticleEntity> articlesList = articles.map((articleData) {
+          return ArticleEntity.fromJson(articleData);
+        }).toList();
+
+        final List<ArticleEntity> newArticlesList = [
+          ...(state as ArticlesLoaded).articles,
+          ...articlesList
+        ];
+
+        emit(ArticlesLoaded(articles: newArticlesList));
+      }
     } catch (e) {
       if (e is CustomException) emit(ArticlesError(errorMessage: e.message));
     }

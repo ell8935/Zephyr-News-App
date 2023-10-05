@@ -14,8 +14,7 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
   FutureOr<void> _mapLoadFilters(
       LoadFilters event, Emitter<FiltersState> emit) async {
     try {
-      FiltersEntity initialFilters =
-          const FiltersEntity(from: '', keywords: '', sortBy: '', to: '');
+      FiltersEntity initialFilters = const FiltersEntity();
 
       final updatedFilters = initialFilters.copyWith(
           keywords: event.keywords,

@@ -39,25 +39,37 @@ class ArticleFeed extends StatelessWidget {
         }
 
         if (state is ArticlesLoaded) {
-          return Expanded(
-            child: ListView.builder(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              itemCount: state.articles.length,
-              itemBuilder: (BuildContext context, int index) {
-                final article = state.articles[index];
-                if (index == 0 && topLevelWidget != null) {
-                  return Column(
-                    children: [
-                      topLevelWidget!,
-                      ArticleCard(article: article),
-                    ],
-                  );
-                }
+          return NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo is ScrollEndNotification &&
+                  scrollInfo.metrics.extentAfter == 0) {
+                context
+                    .read<ArticlesBloc>()
+                    .add(const LoadMoreArticlesWithFilters());
+              }
+              return false;
+            },
+            child: Expanded(
+              child: ListView.builder(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                itemCount: state.articles.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final article = state.articles[index];
+                  if (index == 0 && topLevelWidget != null) {
+                    return Column(
+                      children: [
+                        topLevelWidget!,
+                        ArticleCard(article: article),
+                      ],
+                    );
+                  }
 
-                return ArticleCard(
-                  article: article,
-                );
-              },
+                  return ArticleCard(
+                    article: article,
+                  );
+                },
+              ),
             ),
           );
         } else {

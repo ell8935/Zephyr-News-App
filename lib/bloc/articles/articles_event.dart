@@ -17,3 +17,14 @@ class LoadArticlesWithFilters extends ArticlesEvent {
   @override
   List<Object> get props => [filters];
 }
+
+class LoadMoreArticlesWithFilters extends ArticlesEvent {
+  final FiltersEntity filters;
+
+  const LoadMoreArticlesWithFilters({
+    this.filters = const FiltersEntity(),
+  });
+
+  @override
+  List<Object> get props => [filters];
+}
