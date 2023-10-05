@@ -3,13 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/modules/home/widgets/article_card.dart';
 import 'package:move_home_assignment/modules/home/widgets/article_feed_skeleton.dart';
+import 'package:move_home_assignment/shared/models/article_model.dart';
 
 class ArticleFeed extends StatelessWidget {
+  final ArticleEntity? excludeFromFeed;
   final Widget? topLevelWidget;
 
   const ArticleFeed({
     super.key,
     this.topLevelWidget,
+    this.excludeFromFeed,
   });
 
   @override
@@ -51,25 +54,27 @@ class ArticleFeed extends StatelessWidget {
             },
             child: Expanded(
               child: ListView.builder(
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                itemCount: state.articles.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final article = state.articles[index];
-                  if (index == 0 && topLevelWidget != null) {
-                    return Column(
-                      children: [
-                        topLevelWidget!,
-                        ArticleCard(article: article),
-                      ],
-                    );
-                  }
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  itemCount: state.articles.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final article = state.articles[index];
+                    final isTopLevel = index == 0 && topLevelWidget != null;
+                    final isExcluded = article.title == excludeFromFeed?.title;
 
-                  return ArticleCard(
-                    article: article,
-                  );
-                },
-              ),
+                    if (isTopLevel) {
+                      return Column(children: [
+                        topLevelWidget!,
+                        if (!isExcluded) ArticleCard(article: article),
+                      ]);
+                    }
+
+                    if (isExcluded) {
+                      return const SizedBox();
+                    }
+
+                    return ArticleCard(article: article);
+                  }),
             ),
           );
         } else {

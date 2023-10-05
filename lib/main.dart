@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
-import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
 import 'package:move_home_assignment/modules/home/pages/home_page.dart';
 
 void main() {
@@ -22,10 +21,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => FiltersBloc()..add(const LoadFilters()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              FocusedArticleBloc()..add(const LoadFocusedArticle()),
         ),
       ],
       child: MaterialApp(

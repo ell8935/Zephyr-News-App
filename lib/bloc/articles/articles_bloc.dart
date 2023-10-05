@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
 import 'package:move_home_assignment/shared/models/article_model.dart';
 import 'package:move_home_assignment/shared/models/filters_model.dart';
 import 'package:move_home_assignment/shared/api/get_articles.dart';

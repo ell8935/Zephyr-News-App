@@ -20,7 +20,6 @@ Future<List<dynamic>> getArticles({
       if (articles.isEmpty) {
         throw CustomException("No articles found on this topic");
       }
-      print(articles);
       return articles;
     } else {
       throw CustomException("No articles found on this topic");
