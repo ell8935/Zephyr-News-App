@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
 import 'package:move_home_assignment/shared/models/article_model.dart';
 import 'package:move_home_assignment/shared/models/filters_model.dart';
 import 'package:move_home_assignment/shared/api/get_articles.dart';
@@ -9,6 +10,8 @@ part 'articles_event.dart';
 part 'articles_state.dart';
 
 class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
+  FiltersEntity filters = const FiltersEntity();
+
   ArticlesBloc() : super(ArticlesLoading()) {
     on<LoadArticlesWithFilters>(_onLoadArticlesWithFilters);
     on<LoadMoreArticlesWithFilters>(_onLoadMoreArticlesWithFilters);
@@ -17,6 +20,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   _onLoadArticlesWithFilters(
       LoadArticlesWithFilters event, Emitter<ArticlesState> emit) async {
     try {
+      filters = event.filters;
       final articles = await getArticles(filters: event.filters);
 
       final List<ArticleEntity> articlesList = articles.map((articleData) {
@@ -33,11 +37,10 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
       LoadMoreArticlesWithFilters event, Emitter<ArticlesState> emit) async {
     try {
       if (state is ArticlesLoaded) {
-        // each page is 20 articles long
-        final double page =
-            ((state as ArticlesLoaded).articles.length / 20) + 1;
+        // each page is 10 articles long
+        final int page = (state as ArticlesLoaded).articles.length ~/ 10 + 1;
 
-        final articles = await getArticles(filters: event.filters, page: page);
+        final articles = await getArticles(filters: filters, page: page);
 
         final List<ArticleEntity> articlesList = articles.map((articleData) {
           return ArticleEntity.fromJson(articleData);

@@ -81,7 +81,7 @@ class FullArticle extends StatelessWidget {
                 ),
                 Text(
                   '${article.content.substring(0, article.content.length - 16)}...', //this is to remove the tranctued text u get from the api
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 18),
                 ),
                 const SizedBox(height: 16.0),
                 article.url == ''

@@ -9,12 +9,10 @@ sealed class FiltersEvent extends Equatable {
 
 class LoadFilters extends FiltersEvent {
   final String? keywords;
-  final String? sortBy;
   final String? from;
   final String? to;
 
   const LoadFilters({
-    this.sortBy,
     this.from,
     this.to,
     this.keywords,
@@ -24,7 +22,6 @@ class LoadFilters extends FiltersEvent {
   List<Object> get props => [
         keywords ?? '',
         from ?? '',
-        sortBy ?? '',
         to ?? '',
       ];
 }

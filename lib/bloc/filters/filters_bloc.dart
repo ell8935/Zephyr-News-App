@@ -17,17 +17,13 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
       FiltersEntity initialFilters = const FiltersEntity();
 
       final updatedFilters = initialFilters.copyWith(
-          keywords: event.keywords,
-          from: event.from,
-          sortBy: event.sortBy,
-          to: event.to);
+          keywords: event.keywords, from: event.from, to: event.to);
 
       emit(
         FiltersLoaded(
           filters: FiltersEntity(
               keywords: updatedFilters.keywords,
               from: updatedFilters.from,
-              sortBy: updatedFilters.sortBy,
               to: updatedFilters.to),
         ),
       );

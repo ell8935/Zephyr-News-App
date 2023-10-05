@@ -23,7 +23,6 @@ class _FilterBarState extends State<FilterBar> {
           keywords: currentFilters.keywords,
           from: currentFilters.from,
           to: currentFilters.to,
-          sortBy: currentFilters.sortBy,
         ),
       ),
     );
@@ -39,24 +38,14 @@ class _FilterBarState extends State<FilterBar> {
     );
   }
 
-  void handleFieldChange(BuildContext context, FiltersEntity currentFilters,
+  void handleSearchChange(BuildContext context, FiltersEntity currentFilters,
       String query, String fieldName) {
-    FiltersEntity updatedFilters;
-    switch (fieldName) {
-      case 'keywords':
-        updatedFilters = currentFilters.copyWith(keywords: query);
-        break;
-      case 'sortBy':
-        updatedFilters = currentFilters.copyWith(sortBy: query);
-        break;
-      default:
-        updatedFilters = currentFilters;
-    }
+    FiltersEntity updatedFilters = currentFilters.copyWith(keywords: query);
+
     BlocProvider.of<FiltersBloc>(context).add(LoadFilters(
       keywords: updatedFilters.keywords,
       from: updatedFilters.from,
       to: updatedFilters.to,
-      sortBy: updatedFilters.sortBy,
     ));
   }
 
@@ -68,7 +57,6 @@ class _FilterBarState extends State<FilterBar> {
       keywords: updatedFilters.keywords,
       from: updatedFilters.from,
       to: updatedFilters.to,
-      sortBy: updatedFilters.sortBy,
     ));
   }
 
@@ -85,7 +73,7 @@ class _FilterBarState extends State<FilterBar> {
               Expanded(
                 child: CustomSearchBar(
                   textController: textController,
-                  onChanged: (query) => handleFieldChange(
+                  onChanged: (query) => handleSearchChange(
                       context, currentFilters, query, 'keywords'),
                 ),
               ),

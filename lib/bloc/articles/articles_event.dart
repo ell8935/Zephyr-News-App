@@ -19,12 +19,8 @@ class LoadArticlesWithFilters extends ArticlesEvent {
 }
 
 class LoadMoreArticlesWithFilters extends ArticlesEvent {
-  final FiltersEntity filters;
-
-  const LoadMoreArticlesWithFilters({
-    this.filters = const FiltersEntity(),
-  });
+  const LoadMoreArticlesWithFilters();
 
   @override
-  List<Object> get props => [filters];
+  List<Object> get props => [];
 }
