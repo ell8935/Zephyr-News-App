@@ -19,26 +19,6 @@ class ArticleEntity extends Equatable {
     required this.description,
   });
 
-  ArticleEntity copyWith({
-    String? url,
-    String? title,
-    String? author,
-    String? content,
-    String? urlToImage,
-    String? publishedAt,
-    String? description,
-  }) {
-    return ArticleEntity(
-      url: url ?? this.url,
-      title: title ?? this.title,
-      author: author ?? this.author,
-      content: content ?? this.content,
-      urlToImage: urlToImage ?? this.urlToImage,
-      publishedAt: publishedAt ?? this.publishedAt,
-      description: description ?? this.description,
-    );
-  }
-
   factory ArticleEntity.fromJson(Map<String, dynamic> json) {
     return ArticleEntity(
       url: json['url'] ?? "",

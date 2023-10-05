@@ -1,8 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:move_home_assignment/data/models/articles_model.dart';
-import 'package:move_home_assignment/data/models/filters_model.dart';
-import 'package:move_home_assignment/presentation/modules/shared/api/get_articles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/models/article_model.dart';
+import 'package:move_home_assignment/models/filters_model.dart';
+import 'package:move_home_assignment/ui/modules/shared/api/get_articles.dart';
 
 part 'articles_event.dart';
 part 'articles_state.dart';

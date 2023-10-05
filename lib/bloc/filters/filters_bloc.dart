@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/data/models/filters_model.dart';
+import 'package:move_home_assignment/models/filters_model.dart';
 
 part 'filters_event.dart';
 part 'filters_state.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/presentation/modules/details/widgets/full_article.dart';
-import 'package:move_home_assignment/presentation/modules/home/widgets/article_card.dart';
-import 'package:move_home_assignment/presentation/modules/home/widgets/article_feed_skeleton.dart';
-import 'package:move_home_assignment/presentation/modules/home/widgets/greetings_card.dart';
+import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
+import 'package:move_home_assignment/ui/modules/home/widgets/article_card.dart';
+import 'package:move_home_assignment/ui/modules/home/widgets/greetings_card.dart';
+import 'package:move_home_assignment/ui/modules/details/widgets/full_article.dart';
+import 'package:move_home_assignment/ui/modules/home/widgets/article_feed_skeleton.dart';
 
 class ArticleFeed extends StatelessWidget {
   final bool? isHomePage;

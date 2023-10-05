@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/focused_article/focused_article_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
 
 class FullArticle extends StatelessWidget {
   const FullArticle({
@@ -37,7 +37,7 @@ class FullArticle extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
-                      // Display a local image from assets when the network image fails to load
+                      //local image from assets when the network image fails to load
                       return Image.asset(
                         'assets/images/imageNotFound.png',
                         fit: BoxFit.cover,
@@ -50,16 +50,18 @@ class FullArticle extends StatelessWidget {
                     const Text(
                       'by',
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromARGB(255, 126, 126, 126)),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromARGB(255, 126, 126, 126),
+                      ),
                     ),
                     Text(
                       ' ${article.author}',
                       style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 126, 126, 126)),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 126, 126, 126),
+                      ),
                     ),
                   ],
                 ),
@@ -115,7 +117,7 @@ class FullArticle extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: Text('No article Loaded'),
+            child: Text('There was a problem loading the article'),
           );
         }
       },

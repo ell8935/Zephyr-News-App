@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/business_logic/bloc/filters/filters_bloc.dart';
-import 'package:move_home_assignment/data/models/filters_model.dart';
-import 'package:move_home_assignment/presentation/modules/home/pages/home_page.dart';
-import 'package:move_home_assignment/presentation/modules/shared/widgets/custom_search_bar.dart';
-import 'package:move_home_assignment/presentation/modules/shared/widgets/range_date_picker.dart';
+import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
+import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
+import 'package:move_home_assignment/models/filters_model.dart';
+import 'package:move_home_assignment/ui/modules/home/pages/home_page.dart';
+import 'package:move_home_assignment/ui/modules/shared/widgets/custom_search_bar.dart';
+import 'package:move_home_assignment/ui/modules/shared/widgets/range_date_picker.dart';
 
 class FilterBar extends StatefulWidget {
   const FilterBar({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _FilterBarState createState() => _FilterBarState();
 }
 

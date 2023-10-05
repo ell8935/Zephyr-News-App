@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/presentation/modules/home/widgets/article_card_skeleton.dart';
+import 'package:move_home_assignment/ui/modules/home/widgets/article_card_skeleton.dart';
 
 class ArticleFeedSkeleton extends StatelessWidget {
   const ArticleFeedSkeleton({
