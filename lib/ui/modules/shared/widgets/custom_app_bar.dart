@@ -34,7 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       title: isSearching
           ? const FilterBar()
           : Transform.scale(
-              scale: 0.5, // Adjust the scale factor as needed
+              scale: 0.5,
               child: Image.asset(
                 'assets/images/TitleLogo.png',
               ),

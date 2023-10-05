@@ -54,6 +54,7 @@ class ArticleCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                //facebook is here because the api return the url of facebook as author
                 article.author.isEmpty | article.author.contains('facebook')
                     ? const SizedBox.shrink()
                     : Wrap(

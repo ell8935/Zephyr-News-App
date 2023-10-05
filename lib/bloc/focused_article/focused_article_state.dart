@@ -17,3 +17,12 @@ final class FocusedArticleLoaded extends FocusedArticleState {
   @override
   List<Object> get props => [article];
 }
+
+class FocusedArticleError extends FocusedArticleState {
+  final String errorMessage;
+
+  const FocusedArticleError({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}

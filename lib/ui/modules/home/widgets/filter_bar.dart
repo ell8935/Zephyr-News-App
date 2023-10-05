@@ -16,26 +16,6 @@ class FilterBar extends StatefulWidget {
 }
 
 class _FilterBarState extends State<FilterBar> {
-  final FocusScopeNode _textFocusScopeNode = FocusScopeNode();
-  final FocusNode _textFieldFocusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _textFocusScopeNode.dispose();
-    _textFieldFocusNode.dispose();
-    super.dispose();
-  }
-
-  void toggleSearch() {
-    setState(() {
-      if (_textFieldFocusNode.hasFocus) {
-        _textFieldFocusNode.unfocus();
-      } else {
-        _textFieldFocusNode.requestFocus();
-      }
-    });
-  }
-
   void handleSearch(BuildContext context, FiltersEntity currentFilters) {
     BlocProvider.of<ArticlesBloc>(context).add(
       LoadArticlesWithFilters(
@@ -116,9 +96,8 @@ class _FilterBarState extends State<FilterBar> {
               IconButton(
                 icon: const Icon(Icons.send),
                 color: const Color.fromARGB(255, 65, 159, 199),
-                onPressed: textController
-                        .text.isEmpty // Conditionally enable/disable IconButton
-                    ? null // Disabled if the CustomSearchBar is empty
+                onPressed: textController.text.isEmpty
+                    ? null
                     : () => handleSearch(context, currentFilters),
               ),
             ],

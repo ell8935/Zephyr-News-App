@@ -3,12 +3,6 @@ import 'package:move_home_assignment/models/filters_model.dart';
 
 final dio = Dio();
 
-class NoArticlesFoundException implements Exception {
-  final String message;
-
-  NoArticlesFoundException(this.message);
-}
-
 Future<List<dynamic>> getArticles({
   required FiltersEntity filters,
 }) async {
@@ -20,22 +14,14 @@ Future<List<dynamic>> getArticles({
 
     if (jsonResponse.containsKey("articles")) {
       List<dynamic> articles = jsonResponse["articles"];
-      if (articles.isEmpty) {
-        throw NoArticlesFoundException("No articles found on this topic");
+      if (true) {
+        throw Exception("No articles found on this topic");
       }
       return articles;
     }
   } else {
-    throw DioErrorException(
-        "Dio request failed with status code: ${response.statusCode}");
+    throw DioException(requestOptions: response.requestOptions);
   }
 
-  // If there are no articles or an error occurred, return an initial data list
   return [];
-}
-
-class DioErrorException implements Exception {
-  final String message;
-
-  DioErrorException(this.message);
 }

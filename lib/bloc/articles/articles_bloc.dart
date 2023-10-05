@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/models/article_model.dart';
@@ -39,10 +40,10 @@ _onLoadArticlesWithFilters(
 
     emit(ArticlesLoaded(articles: articlesList));
   } catch (e) {
-    if (e is DioErrorException) {
-      emit(ArticlesError(errorMessage: e.message));
-    } else {
-      emit(ArticlesError(errorMessage: 'An error occurred: $e'));
+    if (e is DioException) {
+      emit(ArticlesError(errorMessage: e.message!));
+    } else if (e is Exception) {
+      emit(ArticlesError(errorMessage: e.toString()));
     }
   }
 }

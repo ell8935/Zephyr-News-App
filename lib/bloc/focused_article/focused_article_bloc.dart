@@ -36,6 +36,7 @@ class FocusedArticleBloc
     } catch (e) {
       // print(e);
       // yield ArticlesError("Failed to load articles: $e");
+      emit(const FocusedArticleError(errorMessage: 'Failed to load article'));
     }
   }
 }

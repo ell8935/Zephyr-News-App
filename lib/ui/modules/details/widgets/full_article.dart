@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/ui/modules/home/widgets/article_card_skeleton.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:move_home_assignment/bloc/focused_article/focused_article_bloc.dart';
 
@@ -9,9 +10,9 @@ class FullArticle extends StatelessWidget {
   }) : super(key: key);
 
   Future<void> _launchURL(String url) async {
-    final finalUrl = Uri.parse(url);
-    if (await canLaunchUrl(finalUrl)) {
-      await launchUrl(finalUrl);
+    final parsedUrl = Uri.parse(url);
+    if (await canLaunchUrl(parsedUrl)) {
+      await launchUrl(parsedUrl);
     }
   }
 
@@ -20,7 +21,7 @@ class FullArticle extends StatelessWidget {
     return BlocBuilder<FocusedArticleBloc, FocusedArticleState>(
       builder: (context, state) {
         if (state is FocusedArticleInitial) {
-          return const CircularProgressIndicator();
+          return const ArticleCardSkeleton();
         }
         if (state is FocusedArticleLoaded) {
           final article = state.article;

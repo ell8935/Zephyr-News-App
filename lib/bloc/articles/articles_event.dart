@@ -19,7 +19,7 @@ class LoadArticles extends ArticlesEvent {
 }
 
 class LoadArticlesWithFilters extends ArticlesEvent {
-  final FiltersEntity filters; // Update to accept a list of strings (keywords)
+  final FiltersEntity filters;
 
   const LoadArticlesWithFilters({
     required this.filters,
