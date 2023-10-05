@@ -14,15 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Set the status bar to transparent
-    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    //   statusBarColor: Colors.transparent,
-    // ));
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ArticlesBloc()..add(const LoadArticles()),
+          create: (context) =>
+              ArticlesBloc()..add(const LoadArticlesWithFilters()),
         ),
         BlocProvider(
           create: (context) => FiltersBloc()..add(const LoadFilters()),

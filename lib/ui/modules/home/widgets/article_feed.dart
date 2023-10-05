@@ -20,7 +20,22 @@ class ArticleFeed extends StatelessWidget {
           return const ArticleFeedSkeleton();
         }
         if (state is ArticlesError) {
-          return Text('Error: ${state.errorMessage}');
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Oops!'),
+              const Text('Something went wrong'),
+              Text(state.errorMessage),
+              ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<ArticlesBloc>()
+                      .add(const LoadArticlesWithFilters());
+                },
+                child: const Text('Retry'),
+              ),
+            ],
+          );
         }
 
         if (state is ArticlesLoaded) {
