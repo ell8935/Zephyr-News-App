@@ -8,14 +8,12 @@ class ArticleFeedSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return const ArticleCardSkeleton();
-        },
-      ),
+    return ListView.builder(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      itemCount: 4,
+      itemBuilder: (BuildContext context, int index) {
+        return const ArticleCardSkeleton();
+      },
     );
   }
 }

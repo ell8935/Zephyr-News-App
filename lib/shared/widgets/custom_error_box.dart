@@ -1,5 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/shared/constants/custom_error_msg_constants.dart';
+
+class CustomErrorBox extends StatelessWidget {
+  final String errorMessage;
+  final String? statusCode;
+
+  const CustomErrorBox({
+    super.key,
+    required this.errorMessage,
+    required this.statusCode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomErrorMsg(
+          errorMsg: errorMessage,
+          statusCode: statusCode,
+        ),
+        ElevatedButton(
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
+          onPressed: () {
+            context.read<ArticlesBloc>().add(const LoadArticlesWithFilters());
+          },
+          child: const Text(
+            'Retry',
+            style: TextStyle(fontSize: 26),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class CustomErrorMsg extends StatelessWidget {
   final String errorMsg;
@@ -33,8 +70,7 @@ class CustomErrorMsg extends StatelessWidget {
             height: 25,
           ),
           Text(
-            customMessage ??
-                errorMsg, // Use the custom message if available, else display the error code.
+            customMessage ?? errorMsg,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.blueGrey,

@@ -60,16 +60,18 @@ class ArticleCard extends StatelessWidget {
                           const Text(
                             'by',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 126, 126, 126)),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 126, 126, 126),
+                            ),
                           ),
                           Text(
                             ' ${article.author}',
                             style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromARGB(255, 126, 126, 126)),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromARGB(255, 126, 126, 126),
+                            ),
                           ),
                         ],
                       ),

@@ -14,14 +14,14 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return const Material(
       child: Column(
         children: [
-          const CustomAppBar(),
-          ArticleFeed(
-            excludeFromFeed: article,
-            topLevelWidget: FullArticle(article: article),
-          )
+          CustomAppBar(),
+          // ArticleFeed(
+          //   excludeFromFeed: article,
+          //   topLevelWidget: FullArticle(article: article),
+          // )
         ],
       ),
     );
