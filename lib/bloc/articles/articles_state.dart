@@ -20,9 +20,12 @@ final class ArticlesLoaded extends ArticlesState {
 
 class ArticlesError extends ArticlesState {
   final String errorMessage;
-
-  const ArticlesError({required this.errorMessage});
+  final String? statusCode;
+  const ArticlesError({required this.errorMessage, this.statusCode});
 
   @override
-  List<Object> get props => [errorMessage];
+  List<Object> get props => [errorMessage, statusCode!];
+
+  @override
+  bool? get stringify => true;
 }

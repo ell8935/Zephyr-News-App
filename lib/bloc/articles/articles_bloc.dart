@@ -28,7 +28,12 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
 
       emit(ArticlesLoaded(articles: articlesList));
     } catch (e) {
-      if (e is CustomException) emit(ArticlesError(errorMessage: e.message));
+      if (e is CustomException) {
+        emit(ArticlesError(errorMessage: e.message, statusCode: e.statusCode));
+      } else {
+        emit(const ArticlesError(
+            errorMessage: 'Something went wrong', statusCode: 'sad'));
+      }
     }
   }
 
@@ -53,7 +58,12 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
         emit(ArticlesLoaded(articles: newArticlesList));
       }
     } catch (e) {
-      if (e is CustomException) emit(ArticlesError(errorMessage: e.message));
+      if (e is CustomException) {
+        emit(ArticlesError(errorMessage: e.message, statusCode: e.statusCode));
+      } else {
+        emit(const ArticlesError(
+            errorMessage: 'Something went wrong', statusCode: 'da'));
+      }
     }
   }
 }

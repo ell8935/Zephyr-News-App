@@ -11,7 +11,7 @@ Future<List<dynamic>> getArticles({
   try {
     final response = await dio.get(
         // due to ease of use i've left the api key here but in a real project i would've put it inside .env file
-        'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&apiKey=9dd723c7bfaf468da346c93685 f6eb7a&page=$page&pageSize=10');
+        'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&apiKey=88d5e4c8e1ff4e5b8db84c8927 fc94d6&page=$page&pageSize=10');
     Map<String, dynamic> jsonResponse = response.data;
 
     if (jsonResponse.containsKey("articles")) {
@@ -25,8 +25,7 @@ Future<List<dynamic>> getArticles({
       throw CustomException("No articles found on this topic");
     }
   } on DioException catch (e) {
-    throw CustomException(e.response!.data['message']);
-  } catch (e) {
-    throw CustomException("Something Went Wrong");
+    throw CustomException(e.response!.data['message'],
+        statusCode: e.response!.data['code']);
   }
 }
