@@ -9,8 +9,6 @@ Welcome to the official repository of Zephyr! This Flutter mobile app allows you
   - [Clone the Repository](#clone-the-repository)
   - [Install Dependencies](#install-dependencies)
   - [Run the App](#run-the-app)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 
