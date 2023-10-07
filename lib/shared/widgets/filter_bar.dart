@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
 import 'package:move_home_assignment/shared/models/filters_model.dart';
+import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
 import 'package:move_home_assignment/modules/home/pages/home_page.dart';
 import 'package:move_home_assignment/shared/widgets/custom_search_bar.dart';
 import 'package:move_home_assignment/shared/widgets/range_date_picker.dart';
@@ -16,7 +16,9 @@ class FilterBar extends StatefulWidget {
 }
 
 class _FilterBarState extends State<FilterBar> {
-  void handleSearch(BuildContext context, FiltersEntity currentFilters) {
+  void _handleSearch(BuildContext context, FiltersEntity currentFilters) {
+    BlocProvider.of<ArticlesBloc>(context).add(ArticlesLoadingEvent());
+
     BlocProvider.of<ArticlesBloc>(context).add(
       LoadArticlesWithFilters(
         filters: FiltersEntity(
@@ -26,6 +28,7 @@ class _FilterBarState extends State<FilterBar> {
         ),
       ),
     );
+
     _navigateToHomePage(context);
   }
 
@@ -38,7 +41,7 @@ class _FilterBarState extends State<FilterBar> {
     );
   }
 
-  void handleSearchChange(BuildContext context, FiltersEntity currentFilters,
+  void _handleSearchChange(BuildContext context, FiltersEntity currentFilters,
       String query, String fieldName) {
     FiltersEntity updatedFilters = currentFilters.copyWith(keywords: query);
 
@@ -49,7 +52,7 @@ class _FilterBarState extends State<FilterBar> {
     ));
   }
 
-  void handleDateChange(BuildContext context, FiltersEntity currentFilters,
+  void _handleDateChange(BuildContext context, FiltersEntity currentFilters,
       String from, String to) {
     FiltersEntity updatedFilters = currentFilters.copyWith(from: from, to: to);
 
@@ -73,20 +76,20 @@ class _FilterBarState extends State<FilterBar> {
               Expanded(
                 child: CustomSearchBar(
                   textController: textController,
-                  onChanged: (query) => handleSearchChange(
+                  onChanged: (query) => _handleSearchChange(
                       context, currentFilters, query, 'keywords'),
                 ),
               ),
               RangeDatePicker(
                 onChanged: (from, to) =>
-                    handleDateChange(context, currentFilters, from, to),
+                    _handleDateChange(context, currentFilters, from, to),
               ),
               IconButton(
                 icon: const Icon(Icons.send),
                 color: const Color.fromARGB(255, 65, 159, 199),
                 onPressed: textController.text.isEmpty
                     ? null
-                    : () => handleSearch(context, currentFilters),
+                    : () => _handleSearch(context, currentFilters),
               ),
             ],
           );

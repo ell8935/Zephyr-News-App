@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/shared/models/article_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:move_home_assignment/shared/models/article_model.dart';
 
 class FullArticle extends StatelessWidget {
   final ArticleEntity article;
@@ -73,7 +73,8 @@ class FullArticle extends StatelessWidget {
             height: 50,
           ),
           Text(
-            '${article.content.substring(0, article.content.length - 16)}...', //this is to remove the tranctued text u get from the api
+            //this is to remove the tranctued text u get from the api
+            '${article.content.substring(0, article.content.length - 16)}...',
             style: const TextStyle(fontSize: 18),
           ),
           const SizedBox(height: 16.0),

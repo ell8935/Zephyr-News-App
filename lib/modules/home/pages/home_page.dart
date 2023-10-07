@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/modules/home/widgets/article_feed.dart';
-import 'package:move_home_assignment/modules/home/widgets/article_feed_skeleton.dart';
-import 'package:move_home_assignment/modules/home/widgets/greetings_card.dart';
 import 'package:move_home_assignment/shared/models/article_model.dart';
 import 'package:move_home_assignment/shared/widgets/custom_app_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_home_assignment/shared/widgets/custom_error_box.dart';
+import 'package:move_home_assignment/modules/home/widgets/article_feed.dart';
+import 'package:move_home_assignment/modules/home/widgets/greetings_card.dart';
+import 'package:move_home_assignment/modules/home/widgets/article_feed_skeleton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,15 +29,16 @@ class _HomePageState extends State<HomePage> {
           }
           if (state is ArticlesLoaded) {
             articles = state.articles;
+
             return ArticleFeed(
               articles: articles,
               topLevelWidget: const GreetingsCard(),
             );
           }
           if (state is ArticlesError) {
-            if (state.statusCode == 'apiKeyExhausted' ||
-                state.statusCode == 'maximumResultsReached' ||
-                state.statusCode == 'rateLimited') {
+            if (state.statusCode == 'rateLimited' ||
+                state.statusCode == 'apiKeyExhausted' ||
+                state.statusCode == 'maximumResultsReached') {
               return Column(
                 children: [
                   Expanded(
@@ -62,8 +63,9 @@ class _HomePageState extends State<HomePage> {
               );
             } else {
               return CustomErrorBox(
-                  errorMessage: state.errorMessage,
-                  statusCode: state.statusCode);
+                errorMessage: state.errorMessage,
+                statusCode: state.statusCode,
+              );
             }
           }
           return const Center(

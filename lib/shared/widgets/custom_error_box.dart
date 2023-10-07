@@ -24,7 +24,8 @@ class CustomErrorBox extends StatelessWidget {
         ),
         ElevatedButton(
           style: ButtonStyle(
-              padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
+          ),
           onPressed: () {
             context.read<ArticlesBloc>().add(const LoadArticlesWithFilters());
           },

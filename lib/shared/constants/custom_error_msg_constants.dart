@@ -5,8 +5,6 @@ final Map<String, String> customErrorMessages = {
       'Your API key hasn\'t been entered correctly. Double check it and try again.',
   'apiKeyMissing':
       'Your API key is missing from the request. Append it to the request with one of these methods.',
-  'parameterInvalid':
-      'You\'ve included a parameter in your request which is currently not supported. Check the message property for more details.',
   'parametersMissing':
       'Required parameters are missing from the request and it cannot be completed. Check the message property for more details.',
   'rateLimited':

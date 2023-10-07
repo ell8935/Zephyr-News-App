@@ -6,17 +6,18 @@ class CustomSearchBar extends StatelessWidget {
 
   const CustomSearchBar({
     Key? key,
-    required this.textController,
     required this.onChanged,
+    required this.textController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-        controller: textController,
-        decoration: const InputDecoration(
-          hintText: 'Search',
-        ),
-        onChanged: onChanged);
+      controller: textController,
+      decoration: const InputDecoration(
+        hintText: 'Search',
+      ),
+      onChanged: onChanged,
+    );
   }
 }

@@ -17,9 +17,6 @@ Future<List<dynamic>> getArticles({
     if (jsonResponse.containsKey("articles")) {
       List<dynamic> articles = jsonResponse["articles"];
 
-      if (articles.isEmpty) {
-        throw CustomException("No articles found on this topic");
-      }
       return articles;
     } else {
       throw CustomException("No articles found on this topic");

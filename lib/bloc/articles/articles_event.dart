@@ -24,3 +24,8 @@ class LoadMoreArticlesWithFilters extends ArticlesEvent {
   @override
   List<Object> get props => [];
 }
+
+class ArticlesLoadingEvent extends ArticlesEvent {
+  @override
+  List<Object> get props => [];
+}

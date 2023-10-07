@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:move_home_assignment/shared/api/get_articles.dart';
 import 'package:move_home_assignment/shared/models/article_model.dart';
 import 'package:move_home_assignment/shared/models/filters_model.dart';
-import 'package:move_home_assignment/shared/api/get_articles.dart';
 import 'package:move_home_assignment/shared/utils/custom_exception.dart';
 
 part 'articles_event.dart';
@@ -12,8 +13,14 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   FiltersEntity filters = const FiltersEntity();
 
   ArticlesBloc() : super(ArticlesLoading()) {
+    on<ArticlesLoadingEvent>(_onArticlesLoadingEvent);
     on<LoadArticlesWithFilters>(_onLoadArticlesWithFilters);
     on<LoadMoreArticlesWithFilters>(_onLoadMoreArticlesWithFilters);
+  }
+
+  FutureOr<void> _onArticlesLoadingEvent(
+      ArticlesLoadingEvent event, Emitter<ArticlesState> emit) {
+    emit(ArticlesLoading());
   }
 
   _onLoadArticlesWithFilters(

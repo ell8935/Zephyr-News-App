@@ -13,9 +13,9 @@ class LoadFilters extends FiltersEvent {
   final String? to;
 
   const LoadFilters({
+    this.keywords,
     this.from,
     this.to,
-    this.keywords,
   });
 
   @override
