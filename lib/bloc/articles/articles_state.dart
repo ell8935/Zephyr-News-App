@@ -2,7 +2,7 @@ part of 'articles_bloc.dart';
 
 sealed class ArticlesState extends Equatable {
   const ArticlesState();
-
+  final List<ArticleEntity> articles = const <ArticleEntity>[];
   @override
   List<Object> get props => [];
 }
@@ -10,6 +10,7 @@ sealed class ArticlesState extends Equatable {
 final class ArticlesLoading extends ArticlesState {}
 
 final class ArticlesLoaded extends ArticlesState {
+  @override
   final List<ArticleEntity> articles;
 
   const ArticlesLoaded({this.articles = const <ArticleEntity>[]});
