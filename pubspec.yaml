@@ -44,6 +44,15 @@ dependencies:
   bloc: ^8.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  flutter_native_splash: ^2.3.3
+  flutter_launcher_icons: ^0.13.1
+
+flutter_native_splash:
+  android: true
+  ios: true
+  image: "assets/logos/Logo.png"
+  color: "#141213"
+  
 
 dev_dependencies:
   flutter_test:
