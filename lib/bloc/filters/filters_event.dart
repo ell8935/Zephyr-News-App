@@ -9,11 +9,13 @@ sealed class FiltersEvent extends Equatable {
 
 class LoadFilters extends FiltersEvent {
   final String? keywords;
+  final String? category;
   final String? from;
   final String? to;
 
   const LoadFilters({
     this.keywords,
+    this.category,
     this.from,
     this.to,
   });
@@ -21,6 +23,7 @@ class LoadFilters extends FiltersEvent {
   @override
   List<Object> get props => [
         keywords ?? '',
+        category ?? '',
         from ?? '',
         to ?? '',
       ];

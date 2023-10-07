@@ -6,12 +6,16 @@ final dio = Dio();
 
 Future<List<dynamic>> getArticles({
   required FiltersEntity filters,
+  bool? byCatagory = false,
   int? page = 1,
 }) async {
   try {
     final response = await dio.get(
         // due to ease of use i've left the api key here but in a real project i would've put it inside .env file
-        'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&apiKey=88d5e4c8e1ff4e5b8db84c8927fc94d6&page=$page&pageSize=10');
+        byCatagory != null && byCatagory
+            ? 'https://newsapi.org/v2/top-headlines?country=us&category=${filters.category}&apiKey=9dd723c7bfaf468da346c93685f6eb7a'
+            : 'https://newsapi.org/v2/everything?q=${filters.keywords}&from=${filters.from}&to=${filters.to}&page=$page&pageSize=10&apiKey=88d5e4c8e1ff4e5b8db84c8927fc94d6');
+
     Map<String, dynamic> jsonResponse = response.data;
 
     if (jsonResponse.containsKey("articles")) {

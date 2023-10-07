@@ -22,7 +22,7 @@ class ArticleFeed extends StatelessWidget {
       onNotification: (ScrollNotification scrollInfo) {
         if (scrollInfo is ScrollEndNotification &&
             scrollInfo.metrics.extentAfter == 0) {
-          context.read<ArticlesBloc>().add(const LoadMoreArticlesWithFilters());
+          context.read<ArticlesBloc>().add(const LoadArticlesWithFilters());
         }
         return false;
       },

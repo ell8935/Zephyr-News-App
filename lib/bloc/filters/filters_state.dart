@@ -10,7 +10,7 @@ sealed class FiltersState extends Equatable {
 final class FiltersInitial extends FiltersState {}
 
 class FiltersLoaded extends FiltersState {
-  final FiltersEntity filters; // Renamed to filters
+  final FiltersEntity filters;
 
   const FiltersLoaded({required this.filters});
 

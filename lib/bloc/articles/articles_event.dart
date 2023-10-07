@@ -8,21 +8,14 @@ sealed class ArticlesEvent extends Equatable {
 }
 
 class LoadArticlesWithFilters extends ArticlesEvent {
+  final bool? byCategory;
   final FiltersEntity filters;
 
-  const LoadArticlesWithFilters({
-    this.filters = const FiltersEntity(),
-  });
+  const LoadArticlesWithFilters(
+      {this.byCategory, this.filters = const FiltersEntity()});
 
   @override
-  List<Object> get props => [filters];
-}
-
-class LoadMoreArticlesWithFilters extends ArticlesEvent {
-  const LoadMoreArticlesWithFilters();
-
-  @override
-  List<Object> get props => [];
+  List<Object> get props => [filters, byCategory ?? ''];
 }
 
 class ArticlesLoadingEvent extends ArticlesEvent {

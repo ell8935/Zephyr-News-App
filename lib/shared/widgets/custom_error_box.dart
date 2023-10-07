@@ -51,7 +51,7 @@ class CustomErrorMsg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customMessage = customErrorMessages[statusCode];
+    final customMessage = customErrorMessagesConstants[statusCode];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

@@ -1,3 +1,4 @@
+// ignore_for_file: overridden_fields
 part of 'articles_bloc.dart';
 
 sealed class ArticlesState extends Equatable {

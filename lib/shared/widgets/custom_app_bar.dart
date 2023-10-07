@@ -7,19 +7,34 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _CustomAppBarState createState() => _CustomAppBarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(56.0);
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class _CustomAppBarState extends State<CustomAppBar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
   bool isSearching = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+  }
 
   void toggleSearch() {
     setState(() {
       isSearching = !isSearching;
+      if (isSearching) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
     });
   }
 
@@ -31,14 +46,23 @@ class _CustomAppBarState extends State<CustomAppBar> {
         icon: Icon(isSearching ? Icons.close : Icons.search),
         onPressed: toggleSearch,
       ),
-      title: isSearching
-          ? const FilterBar()
-          : Transform.scale(
-              scale: 0.5,
-              child: Image.asset(
-                'assets/images/TitleLogo.png',
+      title: AnimatedBuilder(
+        animation: _controller,
+        builder: (_, child) {
+          return Transform.translate(
+            offset: Offset(10 * _controller.value, 0),
+            child: child,
+          );
+        },
+        child: isSearching
+            ? const FilterBar()
+            : Transform.scale(
+                scale: 0.5,
+                child: Image.asset(
+                  'assets/images/TitleLogo.png',
+                ),
               ),
-            ),
+      ),
       actions: isSearching
           ? []
           : <Widget>[
@@ -50,5 +74,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
             ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

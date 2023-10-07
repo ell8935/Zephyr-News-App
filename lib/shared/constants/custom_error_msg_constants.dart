@@ -1,4 +1,4 @@
-final Map<String, String> customErrorMessages = {
+final Map<String, String> customErrorMessagesConstants = {
   'apiKeyDisabled': 'Your API key has been disabled.',
   'apiKeyExhausted': 'Your API key has no more requests available.',
   'apiKeyInvalid':
