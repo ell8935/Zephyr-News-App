@@ -1,16 +1,42 @@
-# move_home_assignment
+# Zephyr news app
 
-A new Flutter project.
+Welcome to the official repository of Zephyr! This Flutter mobile app allows you to search and read news from all over the world.
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+  - [Clone the Repository](#clone-the-repository)
+  - [Install Dependencies](#install-dependencies)
+  - [Run the App](#run-the-app)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Prerequisites
+
+Before you can install and run this app, make sure you have the following prerequisites installed on your system:
+
+- [Flutter]
+- [Dart]
+- [Git]
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Follow these steps to install and run Zephyr on your local machine:
 
-A few resources to get you started if this is your first Flutter project:
+### Clone the Repository
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+git clone https://github.com/ell8935/move_home_assignment
+cd YourApp
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Install Dependencies
+
+run the command "dart run" to install all dependencies
+
+run the command "flutter doctor"
+
+### Run the App
+
+open an emulator > run the command "flutter run"
