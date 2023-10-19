@@ -1,4 +1,4 @@
-package com.example.move_home_assignment
+package com.example.zephy_news_app
 
 import io.flutter.embedding.android.FlutterActivity
 
