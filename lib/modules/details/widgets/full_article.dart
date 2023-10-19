@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:move_home_assignment/shared/models/article_model.dart';
+import 'package:zephy_news_app/shared/models/article_model.dart';
 
 class FullArticle extends StatelessWidget {
   final ArticleEntity article;

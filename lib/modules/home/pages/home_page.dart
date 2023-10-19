@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/shared/models/article_model.dart';
-import 'package:move_home_assignment/shared/widgets/custom_app_bar.dart';
-import 'package:move_home_assignment/shared/widgets/quick_search_bar.dart';
-import 'package:move_home_assignment/shared/widgets/custom_error_box.dart';
-import 'package:move_home_assignment/modules/home/widgets/article_feed.dart';
-import 'package:move_home_assignment/modules/home/widgets/greetings_card.dart';
-import 'package:move_home_assignment/modules/home/widgets/article_feed_skeleton.dart';
+import 'package:zephy_news_app/bloc/articles/articles_bloc.dart';
+import 'package:zephy_news_app/shared/models/article_model.dart';
+import 'package:zephy_news_app/shared/widgets/custom_app_bar.dart';
+import 'package:zephy_news_app/shared/widgets/custom_error_box.dart';
+import 'package:zephy_news_app/shared/widgets/quick_search_bar.dart';
+import 'package:zephy_news_app/modules/home/widgets/article_feed.dart';
+import 'package:zephy_news_app/modules/home/widgets/greetings_card.dart';
+import 'package:zephy_news_app/modules/home/widgets/article_feed_skeleton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

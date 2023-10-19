@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/shared/models/article_model.dart';
-import 'package:move_home_assignment/modules/home/widgets/article_card.dart';
+import 'package:zephy_news_app/bloc/articles/articles_bloc.dart';
+import 'package:zephy_news_app/shared/models/article_model.dart';
+import 'package:zephy_news_app/modules/home/widgets/article_card.dart';
 
 class ArticleFeed extends StatelessWidget {
   final Widget? topLevelWidget;

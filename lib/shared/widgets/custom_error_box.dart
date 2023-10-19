@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/shared/constants/custom_error_msg_constants.dart';
+import 'package:zephy_news_app/bloc/articles/articles_bloc.dart';
+import 'package:zephy_news_app/shared/constants/custom_error_msg_constants.dart';
 
 class CustomErrorBox extends StatelessWidget {
   final String errorMessage;

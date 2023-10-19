@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:move_home_assignment/shared/models/filters_model.dart';
-import 'package:move_home_assignment/shared/utils/custom_exception.dart';
+import 'package:zephy_news_app/shared/models/filters_model.dart';
+import 'package:zephy_news_app/shared/utils/custom_exception.dart';
 
 final dio = Dio();
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/shared/models/article_model.dart';
-import 'package:move_home_assignment/modules/details/pages/details_page.dart';
+import 'package:zephy_news_app/shared/models/article_model.dart';
+import 'package:zephy_news_app/modules/details/pages/details_page.dart';
 
 class ArticleCard extends StatelessWidget {
   final ArticleEntity article;

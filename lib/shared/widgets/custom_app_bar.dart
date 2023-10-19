@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:move_home_assignment/shared/widgets/filter_bar.dart';
+import 'package:zephy_news_app/shared/widgets/filter_bar.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({

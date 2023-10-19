@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_home_assignment/bloc/filters/filters_bloc.dart';
-import 'package:move_home_assignment/bloc/articles/articles_bloc.dart';
-import 'package:move_home_assignment/shared/models/filters_model.dart';
-import 'package:move_home_assignment/modules/home/pages/home_page.dart';
-import 'package:move_home_assignment/shared/constants/categories_constants.dart';
+import 'package:zephy_news_app/bloc/filters/filters_bloc.dart';
+import 'package:zephy_news_app/bloc/articles/articles_bloc.dart';
+import 'package:zephy_news_app/shared/models/filters_model.dart';
+import 'package:zephy_news_app/modules/home/pages/home_page.dart';
+import 'package:zephy_news_app/shared/constants/categories_constants.dart';
 
 class QuickSearchBar extends StatelessWidget {
   const QuickSearchBar({Key? key}) : super(key: key);
