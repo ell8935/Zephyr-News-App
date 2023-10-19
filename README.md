@@ -25,8 +25,7 @@ Follow these steps to install and run Zephyr on your local machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/ell8935/move_home_assignment
-cd YourApp
+git clone https://github.com/ell8935/zephy_news_app
 ```
 
 ### Install Dependencies
